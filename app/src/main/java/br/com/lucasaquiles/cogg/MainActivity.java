@@ -7,7 +7,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+
+import java.sql.SQLException;
+
+import br.com.lucasaquiles.cogg.bean.Pic;
+import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 import br.com.lucasaquiles.cogg.view.SelectImageActivity;
 
 
@@ -26,10 +34,25 @@ public class MainActivity extends Activity implements View.OnClickListener{
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-    buttonInit =  (Button) findViewById(R.id.buttonInit);
-    buttonInit.setOnClickListener(this);
 
-    btnNewPic = (Button) findViewById(R.id.btnNewPic);
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+
+        try {
+
+            Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
+
+            if(dao.create(new Pic("www.google.com.br", "teste", "feliz q só")) == 1){
+                Toast.makeText(this, "salvou a carnica", Toast.LENGTH_LONG).show();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        buttonInit =  (Button) findViewById(R.id.buttonInit);
+        buttonInit.setOnClickListener(this);
+
+        btnNewPic = (Button) findViewById(R.id.btnNewPic);
         btnNewPic.setOnClickListener(this);
 
         btnChoosePick = (Button) findViewById(R.id.btnChoosePic);
@@ -77,6 +100,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
 
         if(v.equals(btnChoosePick)){
+
+            try {
+
+               Toast.makeText(this, "em essa caralhada toda aqui ja salva "+DaoManager.createDao(new DatabaseHelper(getApplicationContext()).getConnectionSource(), Pic.class).queryForAll().size(), Toast.LENGTH_LONG).show();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
             Intent i = new Intent(this, SelectImageActivity.class);
             startActivity(i);

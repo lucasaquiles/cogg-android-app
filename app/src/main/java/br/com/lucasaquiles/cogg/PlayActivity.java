@@ -23,7 +23,15 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+
+import java.sql.SQLException;
+
+import br.com.lucasaquiles.cogg.bean.Pic;
+import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 import br.com.lucasaquiles.cogg.view.ItemFaceView;
 
 
@@ -50,6 +58,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
 
         initializeComponents();
 
