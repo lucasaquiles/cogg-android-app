@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="match_parent">
+
+
+
+    <HorizontalScrollView android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollView"
+        android:layout_alignParentBottom="true"
+        android:scrollbars="horizontal"
+        android:layout_centerHorizontal="true" >
+
+        <LinearLayout
+            android:id="@+id/innerLay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewHead
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView1"
+                    android:onClick="onClick"
+                    android:layout_gravity="center"
+                    android:tag="head_1"
+                    android:src="@drawable/head_1_ic" />
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewHead
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView2"
+                    android:onClick="onClick"
+                    android:layout_gravity="center"
+                    android:tag="head_2"
+                    android:src="@drawable/head_2_ic" />
+                />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewHead
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView3"
+                    android:onClick="onClick"
+                    android:layout_gravity="center"
+                    android:tag="head_3"
+                    android:src="@drawable/head_3_ic" />
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewHead
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView4"
+                    android:onClick="onClick"
+                    android:layout_gravity="center"
+                    android:tag="head_4"
+                    android:src="@drawable/head_4_ic" />
+                />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewHead
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView5"
+                    android:onClick="onClick"
+                    android:layout_gravity="center"
+                    android:tag="head_5"
+                    android:src="@drawable/head_5_ic" />
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewHead
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView6"
+                    android:onClick="onClick"
+                    android:layout_gravity="center"
+                    android:tag="head_6"
+                    android:src="@drawable/head_6_ic" />
+                />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewHead
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView7"
+                    android:onClick="onClick"
+                    android:layout_gravity="center"
+                    android:tag="head_7"
+                    android:src="@drawable/head_7_ic" />
+                />
+            </LinearLayout>
+
+
+
+            <!--<LinearLayout-->
+                <!--android:orientation="vertical"-->
+
+                <!--android:layout_alignParentLeft="true"-->
+                <!--style="@style/scrollItem"-->
+                <!--android:background="@drawable/bg_scroll_item">-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/imageView3"-->
+                    <!--android:src="@drawable/head_3" />-->
+                <!--/>-->
+            <!--</LinearLayout>-->
+
+
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cogg</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_play">PlayActivity</string>
+
+
+    <style name="tab_widget">
+        <item name="android:state_focused"> false</item>
+        <item name="android:state_selected"> false</item>
+        <item name="android:state_pressed"> false</item>
+        <item name="android:background">#00ffffff</item>
+        <!--<item name="android:width">72dp</item>-->
+        <!-- <item android:state_focused="false" android:state_selected="false" -->
+        <!-- android:state_pressed="false" -->
+        <!-- android:drawable="@drawable/tab_unselected" /> -->
+    </style>
+
+    <style name="ButtonText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>r
+
+    <style name="scrollItem">
+        <item name="android:background">#00ffffff</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:paddingLeft">15dp</item>-->
+        <!--<item name="android:paddingRight">15dp</item>-->
+    </style>
+
+    <style name="mainMenu">
+        <item name="android:background">#DCEBF6</item>
+        <item name="android:colorBackground">#DCEBF6</item>
+    </style>
+
+    <style name="avatarLayout">
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <string name="title_activity_take_picture">TakePictureActivity</string>
+
+</resources>

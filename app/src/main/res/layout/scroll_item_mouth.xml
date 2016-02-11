@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="match_parent">
+    <HorizontalScrollView android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollMouth"
+        android:layout_alignParentBottom="true"
+        android:scrollbars="horizontal"
+        android:layout_centerHorizontal="true" >
+
+        <LinearLayout
+            android:id="@+id/innerLay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView1"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_1_ic"
+                    android:tag="mouth_1"
+
+                    />
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair2"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_2_ic"
+                    android:tag="mouth_2"/>
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair3"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_3_ic"
+                    android:tag="mouth_3"/>
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair4"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_4_ic"
+                    android:tag="mouth_4"/>
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair5"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_5_ic"
+                    android:tag="mouth_5"/>
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair6"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_6_ic"
+                    android:tag="mouth_6"/>
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair7"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_7_ic"
+                    android:tag="mouth_7"/>
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair8"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_8_ic"
+                    android:tag="mouth_8"/>
+                />
+            </LinearLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+</LinearLayout>
