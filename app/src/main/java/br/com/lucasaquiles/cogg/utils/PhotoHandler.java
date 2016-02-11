@@ -14,12 +14,18 @@ import java.util.Date;
 public class PhotoHandler implements Camera.PictureCallback {
 
   private final Context context;
+  public static String tmpFilePath;
 
   public PhotoHandler(Context context) {
     this.context = context;
   }
 
-  @Override
+
+    public static String getTmpFilePath() {
+        return tmpFilePath;
+    }
+
+    @Override
   public void onPictureTaken(byte[] data, Camera camera) {
 
     File pictureFileDir = getDir();
@@ -45,6 +51,7 @@ public class PhotoHandler implements Camera.PictureCallback {
       FileOutputStream fos = new FileOutputStream(pictureFile);
       fos.write(data);
       fos.close();
+        tmpFilePath = filename;
       Toast.makeText(context, "New Image saved:" + photoFile,
           Toast.LENGTH_LONG).show();
     } catch (Exception error) {

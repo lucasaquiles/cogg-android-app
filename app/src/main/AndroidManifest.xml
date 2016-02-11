@@ -2,13 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.lucasaquiles.cogg">
 
-
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <application
         android:allowBackup="true"
@@ -27,14 +26,18 @@
         </activity>
         <activity
             android:name=".PlayActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".TakePictureActivity"
             android:label="@string/title_activity_take_picture"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".view.SelectImageActivity"
-            android:label="@string/title_activity_select_image"   android:screenOrientation="landscape"></activity>
+            android:label="@string/title_activity_select_image"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".view.ImageConfigActivity"
+            android:label="@string/title_activity_image_config"></activity>
     </application>
 
 </manifest>
