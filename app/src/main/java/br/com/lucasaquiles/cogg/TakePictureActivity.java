@@ -15,6 +15,7 @@ public class TakePictureActivity extends FragmentActivity implements CameraFragm
 
 
     private Button button;
+    private Button buttonUseImage;
     private int cameraId = 0;
 
     public static final String TAG = "Mustache/CameraActivity";
@@ -30,6 +31,7 @@ public class TakePictureActivity extends FragmentActivity implements CameraFragm
         setContentView(R.layout.activity_take_picture);
 
         button = (Button) findViewById(R.id.button1);
+        buttonUseImage = (Button) findViewById(R.id.button2);
       //  button.setOnClickListener(this);
     }
 
@@ -47,6 +49,10 @@ public class TakePictureActivity extends FragmentActivity implements CameraFragm
 
     public Button getButton() {
         return button;
+    }
+
+    public Button getButtonUseImage() {
+        return buttonUseImage;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package br.com.lucasaquiles.cogg.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,7 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback, 
     private SurfaceHolder surfaceHolder;
     private CameraFragmentListener listener;
     private Button button;
+    private Button buttonUseImage;
 
     /**
      * On activity getting attached.
@@ -47,9 +49,6 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback, 
         }
 
         listener = (CameraFragmentListener) activity;
-
-
-
     }
 
     /**
@@ -79,6 +78,9 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback, 
 
         button = ((TakePictureActivity) getActivity()).getButton();
         button.setOnClickListener(this);
+
+        buttonUseImage = ((TakePictureActivity) getActivity()).getButtonUseImage();
+        buttonUseImage.setOnClickListener(this);
 
         try {
             camera = Camera.open(cameraId);
@@ -255,7 +257,19 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback, 
     @Override
     public void onClick(View v) {
 
-        camera.takePicture(null, null, new PhotoHandler(getActivity()));
+
+        if(v.getId() == button.getId()) {
+            camera.takePicture(null, null, new PhotoHandler(getActivity()));
+        }
+
+
+        if(v.getId() == buttonUseImage.getId()){
+
+            Intent i = new Intent(getActivity().getApplicationContext(), ImageConfigActivity.class);
+            i.putExtra("filePath",  PhotoHandler.getTmpFilePath());
+
+            startActivity(i);
+        }
 
        // Toast.makeText(getActivity(), "eita", Toast.LENGTH_LONG).show();
     }
