@@ -7,14 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.j256.ormlite.dao.DaoManager;
-
-import java.sql.SQLException;
-
-import br.com.lucasaquiles.cogg.bean.Pic;
-import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 import br.com.lucasaquiles.cogg.view.SelectImageActivity;
 
 
@@ -84,13 +77,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
 
         if(v.equals(btnChoosePick)){
-
-            try {
-
-               Toast.makeText(this, "em essa caralhada toda aqui ja salva "+DaoManager.createDao(new DatabaseHelper(getApplicationContext()).getConnectionSource(), Pic.class).queryForAll().size(), Toast.LENGTH_LONG).show();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
             Intent i = new Intent(this, SelectImageActivity.class);
             startActivity(i);

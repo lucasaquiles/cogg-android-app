@@ -12,12 +12,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.j256.ormlite.dao.DaoManager;
+
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.lucasaquiles.cogg.PlayActivity;
 import br.com.lucasaquiles.cogg.R;
 import br.com.lucasaquiles.cogg.adapter.GridViewAdapter;
+import br.com.lucasaquiles.cogg.bean.Pic;
+import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 
 public class SelectImageActivity extends Activity implements AdapterView.OnItemClickListener{
 
@@ -40,76 +46,54 @@ public class SelectImageActivity extends Activity implements AdapterView.OnItemC
     private ArrayList<ImageItem> getData() {
         final ArrayList<ImageItem> imageItems = new ArrayList<>();
 
-        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + "/Cogg");
-
-
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inSampleSize = 4;
         o.inDither=false;                     //Disable Dithering mode
         o.inPurgeable=true;
-//
 
-        if(path.exists()) {
-            String[] fileNames = path.list();
+        try {
 
-            for(int i = 0; i < fileNames.length; i++) {
+            List<Pic> list =  DaoManager.createDao(new DatabaseHelper(this).getConnectionSource(), Pic.class).queryForAll();
 
-                String filePath = path.getPath() + "/" + fileNames[i];
+            for (Pic pic : list) {
 
-               // File image = new File(filePath, "teste");
-//                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-//                Bitmap bitmap = BitmapFactory.decodeFile(filePath,bmOptions);
-//                bitmap = Bitmap.createScaledBitmap(bitmap, 80,80,true);
+                Drawable draw = Drawable.createFromPath(pic.getFilePath());
 
-                Drawable draw = Drawable.createFromPath(filePath);
-                if (draw instanceof BitmapDrawable) {
+
+                if (draw != null && draw instanceof BitmapDrawable) {
                     BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
                     if (bitmapDrawable.getBitmap() != null) {
 
                         Bitmap bitmap = bitmapDrawable.getBitmap();
-                        imageItems.add(new ImageItem(bitmap, fileNames[i],  filePath));
+                        imageItems.add(new ImageItem(bitmap, pic.getTitle(),  pic.getFilePath()));
                     }
                 }
-
-             //       Bitmap bitmap = BitmapFactory.decodeFile();
-
-
-
-               // Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(new File(), null, o);
-
-              //  BitmapDrawable bitmap =  new BitmapDrawable(getResources(), path.getPath()+"/"+ fileNames[i]);
-
-             //
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + "/Cogg");
 
+//        if(path.exists()) {
+//            String[] fileNames = path.list();
+//
+//            for(int i = 0; i < fileNames.length; i++) {
+//
+//                String filePath = path.getPath() + "/" + fileNames[i];
+//
+//                Drawable draw = Drawable.createFromPath(filePath);
+//                if (draw instanceof BitmapDrawable) {
+//                    BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
+//                    if (bitmapDrawable.getBitmap() != null) {
+//
+//                        Bitmap bitmap = bitmapDrawable.getBitmap();
+//                        imageItems.add(new ImageItem(bitmap, fileNames[i],  filePath));
+//                    }
+//                }
+//            }
+//        }
 
-        //new BitmapDrawable(getResources(), path+".jpg");
-
-
-//
-//        Resources res = this.getResources();
-//        int id = R.drawable.template;
-//        Bitmap b = BitmapFactory.decodeResource(res, id, o);
-//        imageItems.add(new ImageItem(b, "Image#", id));
-//
-//        int idAngry = R.drawable.angry;
-//        Bitmap b2 = BitmapFactory.decodeResource(res, idAngry, o);
-//
-//        int idSad = R.drawable.sad;
-//        Bitmap b3 = BitmapFactory.decodeResource(res, idSad, o);
-//
-//        int idHappy = R.drawable.happy;
-//        Bitmap b4 = BitmapFactory.decodeResource(res, idHappy, o);
-//
-//
-//        imageItems.add(new ImageItem(b2, "Raiva", idAngry));
-//        imageItems.add(new ImageItem(b3, "Triste", idSad));
-//        imageItems.add(new ImageItem(b4, "Feliz", idHappy));
-
-
-        //}
         return imageItems;
     }
 
