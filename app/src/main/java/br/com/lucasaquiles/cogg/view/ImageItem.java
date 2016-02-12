@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 public class ImageItem {
 	private Bitmap image;
 	private String title;
+
 	private int resourceId;
 	private String filePath;
 
