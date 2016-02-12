@@ -9,7 +9,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 
 import java.sql.SQLException;
@@ -33,21 +32,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-
-
-        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-
-        try {
-
-            Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
-
-            if(dao.create(new Pic("www.google.com.br", "teste", "feliz q só")) == 1){
-                Toast.makeText(this, "salvou a carnica", Toast.LENGTH_LONG).show();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
 
         buttonInit =  (Button) findViewById(R.id.buttonInit);
         buttonInit.setOnClickListener(this);

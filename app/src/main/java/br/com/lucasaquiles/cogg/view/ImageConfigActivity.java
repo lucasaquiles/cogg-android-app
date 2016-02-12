@@ -1,6 +1,7 @@
 package br.com.lucasaquiles.cogg.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -11,7 +12,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+
+import java.sql.SQLException;
+
+import br.com.lucasaquiles.cogg.PlayActivity;
 import br.com.lucasaquiles.cogg.R;
+import br.com.lucasaquiles.cogg.bean.Pic;
+import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 
 public class ImageConfigActivity extends Activity {
 
@@ -19,6 +28,8 @@ public class ImageConfigActivity extends Activity {
     private EditText editTextTitle;
     private EditText editTextEmotion;
     private Button button;
+
+    private String filePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +51,37 @@ public class ImageConfigActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "eita", Toast.LENGTH_LONG).show();
+                Pic pic = new Pic();
+                pic.setEmotion(editTextEmotion.getText().toString());
+                pic.setTitle(editTextTitle.getText().toString());
+                pic.setFilePath(filePath);
+
+
+                DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+
+                try {
+
+                    Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
+
+                    if(dao.create(pic) == 1){
+                        Toast.makeText(getApplicationContext(), "Imagem salva", Toast.LENGTH_LONG).show();
+
+
+                        Intent i = new Intent(getApplicationContext(), PlayActivity.class);
+                        i.putExtra("filePath", filePath);
+
+                        startActivity(i);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+
             }
         });
 
 
-        String filePath = extras.getString("filePath");
+        filePath = extras.getString("filePath");
         Drawable draw = Drawable.createFromPath(filePath);
         if (draw instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
