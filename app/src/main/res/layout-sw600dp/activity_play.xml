@@ -167,9 +167,9 @@
                 android:src="@drawable/eyebrow_1_ic_opened"
                 android:id="@+id/imageViewEyewbrow"
                 android:layout_weight="5"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="70dp"
 
-                android:layout_gravity="top|center"
+                android:layout_gravity="top|center_horizontal"
                 />
 
         <ImageView
