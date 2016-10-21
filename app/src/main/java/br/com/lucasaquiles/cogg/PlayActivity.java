@@ -20,18 +20,11 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
-
-import java.sql.SQLException;
-
-import br.com.lucasaquiles.cogg.bean.Pic;
-import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 import br.com.lucasaquiles.cogg.view.ItemFaceView;
 
 
@@ -49,6 +42,8 @@ public class PlayActivity extends Activity implements View.OnClickListener {
     private Button backButton;
     private SeekBar seekBar;
     private TextView infoSeekBar;
+    private TextView textViewTitleImage;
+
 
     private int currentTab;
     static int tmpVal = 0;
@@ -85,13 +80,13 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                        int bottom = lpImage.bottomMargin;
 
                        if (progress < tmpVal) {
-                           top = top - 5;
+                           top = top + 5;
                        } else {
 
-                           top = top + 5;
+                           top = top - 5;
                        }
 
-                       infoSeekBar.setText("valor anterior: "+tmpVal+" prog: "+progress+ "margin-top: "+top);
+                      // infoSeekBar.setText("valor anterior: "+tmpVal+" prog: "+progress+ "margin-top: "+top);
 
                        tmpVal = progress;
 
@@ -112,12 +107,12 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                        int bottom = lpImage.bottomMargin;
 
                        if (progress < tmpVal) {
-                           top = top - 3;
+                           top = top + 3;
                        } else {
 
-                           top = top + 3 ;
+                           top = top - 3 ;
                        }
-                       infoSeekBar.setText("valor anterior: "+tmpVal+" prog: "+progress+ "margin-top: "+top);
+                      // infoSeekBar.setText("valor anterior: "+tmpVal+" prog: "+progress+ "margin-top: "+top);
                        lp.setMargins(left, top, right, bottom);
                        imageViewEyebrow.setLayoutParams(lp);
 
@@ -170,6 +165,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
         }else{
 
             String filePath = extras.getString("filePath");
+            String title = extras.getString("title");
             Drawable draw = Drawable.createFromPath(filePath);
             if (draw instanceof BitmapDrawable) {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
@@ -177,6 +173,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
                     Bitmap bitmap = bitmapDrawable.getBitmap();
                     imageViewBase.setImageBitmap(bitmap);
+//                    textViewTitleImage.setText(title);
                 }
             }
 
@@ -185,7 +182,13 @@ public class PlayActivity extends Activity implements View.OnClickListener {
     }
 
     public void initializeComponents(){
+
+
+        final RelativeLayout seekBarLayout = (RelativeLayout) findViewById(R.id.seekBarLayout);
+
         imageViewBase = (ImageView) findViewById(R.id.imageViewBase);
+
+//        textViewTitleImage = (TextView) findViewById(R.id.title);
 
         tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
@@ -221,15 +224,16 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             public void onTabChanged(String arg0) {
                 tmpVal = 0;
                 currentTab = tabHost.getCurrentTab();
+                seekBar.setProgress(5);
 
                 if (currentTab == 0) {
 
-                    seekBar.setVisibility(View.INVISIBLE);
+                    seekBarLayout.setVisibility(View.INVISIBLE);
                 }
 
                 if (currentTab == 1 || currentTab == 2) {
 
-                    seekBar.setVisibility(View.VISIBLE);
+                    seekBarLayout.setVisibility(View.VISIBLE);
                 }
 
                 Log.i("***Selected Tab", "Im currently in tab with index::" + currentTab);
@@ -249,7 +253,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
         imageViewMouth = (ImageView) findViewById(R.id.imageViewMouth);
         imageViewNose = (ImageView) findViewById(R.id.imageViewNose);
         imageViewHair = (ImageView) findViewById(R.id.imageViewHair);
-        infoSeekBar = (TextView) findViewById(R.id.textViewSeek);
+      //  infoSeekBar = (TextView) findViewById(R.id.textViewSeek);
     }
 
 

@@ -25,27 +25,32 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp" android:layout_alignParentRight="true"
-        android:id="@+id/seekBarLayout">
+         android:background="#000000"
+        android:layout_alignParentRight="true"
+        android:id="@+id/seekBarLayout" >
 
-        <!---->
-        <SeekBar
-            android:layout_width="300dp"
+        <!--
+             android:layout_width="300dp"
             android:layout_height="50dp"
+        -->
+        <br.com.lucasaquiles.cogg.view.VerticalSeekBar
+
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+
             android:id="@+id/seekBar"
 
             android:progress="5"
             android:max="10"
             />
 
-        <TextView
-            android:id="@+id/textViewSeek"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_below="@+id/seekBar"
-           />
+        <!--<TextView-->
+            <!--android:id="@+id/textViewSeek"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="0" android:visibility="invisible"-->
+            <!--android:layout_below="@+id/seekBar"-->
+           <!--/>-->
 
     </RelativeLayout>
 
@@ -87,7 +92,7 @@
                 android:layout_height="250dp" android:background="@drawable/circle" android:padding="5dp">
 
                 <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_width="wrap_content" android:id="@+id/title"-->
                     <!--android:layout_height="wrap_content"  android:text="Ooppaaa aqui eh um tablet, em!"/>-->
 
                 <!--<ImageView-->

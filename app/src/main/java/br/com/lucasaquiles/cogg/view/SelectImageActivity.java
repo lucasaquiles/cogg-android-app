@@ -113,6 +113,7 @@ public class SelectImageActivity extends Activity implements AdapterView.OnItemC
             intent.putExtra("byteArray", item.getResourceId());
         }else {
             intent.putExtra("filePath", item.getFilePath());
+            intent.putExtra("title", item.getTitle());
         }
         //Start details activity
         startActivity(intent);
