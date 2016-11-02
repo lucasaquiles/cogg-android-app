@@ -1,12 +1,16 @@
 package br.com.lucasaquiles.cogg.view;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,7 +26,7 @@ import br.com.lucasaquiles.cogg.R;
 import br.com.lucasaquiles.cogg.bean.Pic;
 import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 
-public class ImageConfigActivity extends Activity {
+public class ImageConfigActivity extends Activity{
 
     private ImageView imageView;
     private EditText editTextTitle;
@@ -43,7 +47,6 @@ public class ImageConfigActivity extends Activity {
         imageView = (ImageView) findViewById(R.id.imageView10);
         editTextTitle = (EditText) findViewById(R.id.editText1);
         editTextEmotion = (EditText) findViewById(R.id.editText2);
-
 
         button =(Button) findViewById(R.id.buttonConfirm);
 
@@ -97,6 +100,38 @@ public class ImageConfigActivity extends Activity {
         // Bitmap b = BitmapFactory.decodeByteArray(
         // getIntent().getByteArrayExtra("byteArray"), 0, getIntent().getByteArrayExtra("byteArray").length);
 
+
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+
+
+        if (activity.getCurrentFocus() == null) {
+            inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
+        } else {
+            inputMethodManager.hideSoftInputFromInputMethod(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if ( v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent( event );
     }
 
 }
