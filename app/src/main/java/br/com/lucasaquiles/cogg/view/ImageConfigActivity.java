@@ -54,6 +54,7 @@ public class ImageConfigActivity extends Activity {
                 Pic pic = new Pic();
                 pic.setEmotion(editTextEmotion.getText().toString());
                 pic.setTitle(editTextTitle.getText().toString());
+                pic.setAvatarPath("");
                 pic.setFilePath(filePath);
 
 
@@ -69,6 +70,7 @@ public class ImageConfigActivity extends Activity {
 
                         Intent i = new Intent(getApplicationContext(), PlayActivity.class);
                         i.putExtra("filePath", filePath);
+                        i.putExtra("pic", pic);
 
                         startActivity(i);
                     }

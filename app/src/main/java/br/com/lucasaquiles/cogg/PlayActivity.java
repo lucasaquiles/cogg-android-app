@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,7 +25,21 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import br.com.lucasaquiles.cogg.bean.Pic;
+import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 import br.com.lucasaquiles.cogg.view.ItemFaceView;
 
 
@@ -43,7 +58,10 @@ public class PlayActivity extends Activity implements View.OnClickListener {
     private SeekBar seekBar;
     private TextView infoSeekBar;
     private TextView textViewTitleImage;
+    private Button saveButton;
+    private LinearLayout image;
 
+    private Pic pic;
 
     private int currentTab;
     static int tmpVal = 0;
@@ -156,14 +174,13 @@ public class PlayActivity extends Activity implements View.OnClickListener {
         if(extras != null && extras.getInt("byteArray") > 0) {
             int resourceId = extras.getInt("byteArray");
 
-
             Resources res = this.getResources();
 
             Bitmap b = BitmapFactory.decodeResource(res, resourceId);
 
             imageViewBase.setImageBitmap(b);
         }else{
-
+            pic = (Pic) intent.getSerializableExtra("pic");
             String filePath = extras.getString("filePath");
             String title = extras.getString("title");
             Drawable draw = Drawable.createFromPath(filePath);
@@ -185,9 +202,8 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
 
         final RelativeLayout seekBarLayout = (RelativeLayout) findViewById(R.id.seekBarLayout);
-
         imageViewBase = (ImageView) findViewById(R.id.imageViewBase);
-
+        image = (LinearLayout) findViewById(R.id.frameBase);
 //        textViewTitleImage = (TextView) findViewById(R.id.title);
 
         tabHost = (TabHost) findViewById(R.id.tabHost);
@@ -243,6 +259,9 @@ public class PlayActivity extends Activity implements View.OnClickListener {
         backButton = (Button) findViewById(R.id.back_button);
         backButton.setOnClickListener(this);
 
+        saveButton = (Button) findViewById(R.id.save_button);
+        saveButton.setOnClickListener(this);
+
         imageViewBase = (ImageView) findViewById(R.id.imageViewBase);
 
         seekBar = (SeekBar) findViewById(R.id.seekBar);
@@ -292,6 +311,62 @@ public class PlayActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+        if(v.getId() == saveButton.getId()){
+
+            image.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(image.getDrawingCache());
+            image.setDrawingCacheEnabled(false);
+
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+
+            String path = Environment.DIRECTORY_PICTURES + File.separator + "Cogg" ;
+            File sdDir = Environment.getExternalStoragePublicDirectory(path);
+            File fileDir = new File(sdDir, "templates");
+
+
+
+            if (!fileDir.exists() && !fileDir.mkdirs()) {
+                Toast.makeText(this, "Can't create directory to save image.",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
+            String date = dateFormat.format(new Date());
+            String filename = fileDir.getPath() + File.separator + date+"nomedaFoto.jpg";
+
+            File f = new File(filename);
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            FileOutputStream fo = null;
+
+            try {
+                fo = new FileOutputStream(f);
+                fo.write(bytes.toByteArray());
+                fo.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            pic.setAvatarPath(filename);
+            try {
+
+                DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
+
+                if (dao.update(pic) == 1) {
+                    Toast.makeText(this, "atualizou na base "+pic.getAvatarPath(), Toast.LENGTH_LONG).show();
+                }
+            }catch(SQLException e){
+
+            }
+            Toast.makeText(this, "vai salvar", Toast.LENGTH_LONG).show();
+        }
+
         if(v.getId() == backButton.getId()){
 
             // adicionar um confirm dialog para voltar para o menu principal
@@ -300,38 +375,38 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             startActivity(i);
 
         }else{
-            ImageView imageView = (ImageView) v;
 
-            if(imageView instanceof ItemFaceView){
 
+            if(v instanceof ItemFaceView) {
+                ImageView imageView = (ImageView) v;
                 ItemFaceView faceItemView = (ItemFaceView) v;
 
-                if(faceItemView.isEye()){
+                if (faceItemView.isEye()) {
 
                     imageView = imageViewEye;
                 }
 
-                if(faceItemView.isHead()){
+                if (faceItemView.isHead()) {
 
                     imageView = imageViewHead;
                 }
 
-                if(faceItemView.isEyebrow()){
+                if (faceItemView.isEyebrow()) {
 
                     imageView = imageViewEyebrow;
                 }
 
-                if(faceItemView.isMouth()){
+                if (faceItemView.isMouth()) {
 
                     imageView = imageViewMouth;
                 }
 
-                if(faceItemView.isNose()){
+                if (faceItemView.isNose()) {
 
                     imageView = imageViewNose;
                 }
 
-                if(faceItemView.isHair()){
+                if (faceItemView.isHair()) {
 
                     imageView = imageViewHair;
                 }
@@ -339,7 +414,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
                 String name = this.getResources().getResourceName(imageView.getId());
 
-                String openedDrawlable = faceItemView.getTag()+"_ic_opened";
+                String openedDrawlable = faceItemView.getTag() + "_ic_opened";
 
                 int id = getResources().getIdentifier(openedDrawlable, "drawable", getPackageName());
                 //  Toast.makeText(this, openedDrawlable + v.getTag(), Toast.LENGTH_LONG ).show();
@@ -354,15 +429,6 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                 Animation pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse);
                 v.startAnimation(pulseAnimation);
             }
-
-
-
-
-
-           // imageViewHead.setBackgroundResource(id);
-            //Toast.makeText(this, name, Toast.LENGTH_LONG ).show();
-
-           // imageView.draw();
         }
     }
 

@@ -3,18 +3,23 @@ package br.com.lucasaquiles.cogg.bean;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 /**
  * Created by lucasaquiles on 2/11/16.
  */
 
 @DatabaseTable
-public class Pic {
+public class Pic implements Serializable {
 
     @DatabaseField(generatedId = true)
     private Long id;
 
     @DatabaseField
     private String filePath;
+
+    @DatabaseField
+    private String avatarPath;
 
     @DatabaseField
     private String title;
@@ -52,5 +57,13 @@ public class Pic {
         this.filePath = filePath;
         this.title = title;
         this.emotion = emotion;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
     }
 }

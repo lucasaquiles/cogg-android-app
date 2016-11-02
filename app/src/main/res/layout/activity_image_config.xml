@@ -18,12 +18,14 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Titulo da imagems"
         android:id="@+id/editText1" android:layout_below="@+id/wrap"
          />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Qual a expressão?"
         android:id="@+id/editText2" android:layout_below="@+id/editText1"
          />
 

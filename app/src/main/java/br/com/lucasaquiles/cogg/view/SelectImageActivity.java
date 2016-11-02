@@ -57,15 +57,23 @@ public class SelectImageActivity extends Activity implements AdapterView.OnItemC
 
             for (Pic pic : list) {
 
-                Drawable draw = Drawable.createFromPath(pic.getFilePath());
+                Drawable draw = null;
+                String path = "";
+                if(pic.getAvatarPath() != null){
+                    path = pic.getAvatarPath();
+                }else {
 
+                    path = pic.getFilePath();
+                }
+                draw = Drawable.createFromPath(path);
 
                 if (draw != null && draw instanceof BitmapDrawable) {
                     BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
                     if (bitmapDrawable.getBitmap() != null) {
 
                         Bitmap bitmap = bitmapDrawable.getBitmap();
-                        imageItems.add(new ImageItem(bitmap, pic.getTitle(),  pic.getFilePath()));
+
+                        imageItems.add(new ImageItem(bitmap, pic.getTitle(),  path, pic));
                     }
                 }
             }
@@ -114,6 +122,7 @@ public class SelectImageActivity extends Activity implements AdapterView.OnItemC
         }else {
             intent.putExtra("filePath", item.getFilePath());
             intent.putExtra("title", item.getTitle());
+            intent.putExtra("pic", item.getPic());
         }
         //Start details activity
         startActivity(intent);

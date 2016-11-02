@@ -24,7 +24,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
 
-		
+		onUpgrade(db, connectionSource, 0, 0);
 		try{
 			TableUtils.createTable(connectionSource, Pic.class);
 
@@ -41,13 +41,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			int arg3) {
 		// TODO Auto-generated method stub
 		
-//		try{
-//			
-//			TableUtils.dropTable(connectionSource, Produto.class, arg2);
+		try{
+//
+			TableUtils.dropTable(connectionSource, Pic.class, true);
+	//		TableUtils.dropTable(connectionSource, Pic.class, arg2);
 //			TableUtils.dropTable(connectionSource, Categoria.class, arg2);
-//		}catch(Exception e){
-//			Log.e(TAG_LOG, "exception: "+e);
-//		}
+		}catch(Exception e){
+			Log.e(TAG_LOG, "exception: "+e);
+		}
 //		
 
 	}

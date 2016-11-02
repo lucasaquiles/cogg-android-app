@@ -7,11 +7,14 @@
     <string name="title_activity_play">PlayActivity</string>
 
     <style name="tab_widget">
-        <item name="android:state_focused">false</item>
-        <item name="android:state_selected">false</item>
-        <item name="android:state_pressed">false</item>
-
-
+        <item name="android:state_focused"> false</item>
+        <item name="android:state_selected"> false</item>
+        <item name="android:state_pressed"> false</item>
+        <item name="android:background">#00ffffff</item>
+        <!--<item name="android:width">72dp</item>-->
+        <!-- <item android:state_focused="false" android:state_selected="false" -->
+        <!-- android:state_pressed="false" -->
+        <!-- android:drawable="@drawable/tab_unselected" /> -->
     </style>
 
     <style name="ButtonText">
@@ -26,13 +29,12 @@
         <item name="android:shadowDx">1</item>
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">2</item>
-    </style>
+    </style>r
 
     <style name="scrollItem">
-        <item name="android:background">#ffffff</item>
+        <item name="android:background">#00ffffff</item>
         <item name="android:layout_margin">5dp</item>
-
-        <item name="android:padding">1dp</item>
+        <item name="android:padding">5dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <!--<item name="android:paddingLeft">15dp</item>-->

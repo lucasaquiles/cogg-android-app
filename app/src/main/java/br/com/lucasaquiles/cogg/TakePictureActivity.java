@@ -1,9 +1,7 @@
 package br.com.lucasaquiles.cogg;
 
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -81,21 +79,5 @@ public class TakePictureActivity extends FragmentActivity implements CameraFragm
 //
 //        assert camera != null;
 //        camera.takePicture(null, null, new PhotoHandler(getApplicationContext()));
-    }
-
-    private int findFrontFacingCamera() {
-        int cameraId = -1;
-        // Search for the front facing camera
-        int numberOfCameras = Camera.getNumberOfCameras();
-        for (int i = 0; i < numberOfCameras; i++) {
-            Camera.CameraInfo info = new Camera.CameraInfo();
-            Camera.getCameraInfo(i, info);
-            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-                Log.d("camera", "Camera found");
-                cameraId = i;
-                break;
-            }
-        }
-        return cameraId;
     }
 }

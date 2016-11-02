@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import br.com.lucasaquiles.cogg.view.SelectImageActivity;
@@ -61,6 +63,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse);
+
+        v.startAnimation(hyperspaceJumpAnimation);
 
         if(v.equals(buttonInit)){
 
