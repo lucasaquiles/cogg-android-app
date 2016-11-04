@@ -175,7 +175,7 @@
                         android:src="@drawable/nose_1_ic_opened"
                         android:id="@+id/imageViewNose"
                         android:layout_weight="5"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="20dp"
 
                         android:layout_gravity="center"
                         />
@@ -246,7 +246,7 @@
                 <FrameLayout
                     android:id="@android:id/tabcontent"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:id="@+id/tab1"

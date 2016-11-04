@@ -139,6 +139,80 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
 
 
+
+                if(currentTab == 3){
+
+                    // Toast.makeText(getApplicationContext(), "to no tab ", Toast.LENGTH_LONG).show();
+
+                    FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+                    FrameLayout.LayoutParams lpImage = (android.widget.FrameLayout.LayoutParams) imageViewMouth.getLayoutParams();
+                    int left = lpImage.leftMargin;
+                    int top = lpImage.topMargin;
+                    int right = lpImage.rightMargin;
+                    int bottom = lpImage.bottomMargin;
+
+                    if (progress < tmpVal) {
+                        top = top + 3;
+                    } else {
+
+                        top = top - 3 ;
+                    }
+                    // infoSeekBar.setText("valor anterior: "+tmpVal+" prog: "+progress+ "margin-top: "+top);
+                    lp.setMargins(left, top, right, bottom);
+                    imageViewMouth.setLayoutParams(lp);
+
+                    tmpVal = progress;
+                }
+
+                if(currentTab == 4){
+
+                    // Toast.makeText(getApplicationContext(), "to no tab ", Toast.LENGTH_LONG).show();
+
+                    FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+                    FrameLayout.LayoutParams lpImage = (android.widget.FrameLayout.LayoutParams) imageViewNose.getLayoutParams();
+                    int left = lpImage.leftMargin;
+                    int top = lpImage.topMargin;
+                    int right = lpImage.rightMargin;
+                    int bottom = lpImage.bottomMargin;
+
+                    if (progress < tmpVal) {
+                        top = top + 3;
+                    } else {
+
+                        top = top - 3 ;
+                    }
+                    // infoSeekBar.setText("valor anterior: "+tmpVal+" prog: "+progress+ "margin-top: "+top);
+                    lp.setMargins(left, top, right, bottom);
+                    imageViewNose.setLayoutParams(lp);
+
+                    tmpVal = progress;
+                }
+
+                if(currentTab == 5){
+
+                    // Toast.makeText(getApplicationContext(), "to no tab ", Toast.LENGTH_LONG).show();
+
+                    FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+                    FrameLayout.LayoutParams lpImage = (android.widget.FrameLayout.LayoutParams) imageViewHair.getLayoutParams();
+                    int left = lpImage.leftMargin;
+                    int top = lpImage.topMargin;
+                    int right = lpImage.rightMargin;
+                    int bottom = lpImage.bottomMargin;
+
+                    if (progress < tmpVal) {
+                        top = top + 3;
+                    } else {
+
+                        top = top - 3 ;
+                    }
+                    // infoSeekBar.setText("valor anterior: "+tmpVal+" prog: "+progress+ "margin-top: "+top);
+                    lp.setMargins(left, top, right, bottom);
+                    imageViewHair.setLayoutParams(lp);
+
+                    tmpVal = progress;
+                }
+
+
 //
 //                   lp.setMargins(left, top, right, bottom);
 //                   imageViewEye.setLayoutParams(lp);
