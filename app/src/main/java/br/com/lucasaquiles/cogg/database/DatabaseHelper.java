@@ -9,6 +9,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import br.com.lucasaquiles.cogg.bean.Pic;
+import br.com.lucasaquiles.cogg.bean.Sketche;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
@@ -27,7 +28,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		onUpgrade(db, connectionSource, 0, 0);
 		try{
 			TableUtils.createTable(connectionSource, Pic.class);
-
+			TableUtils.dropTable(connectionSource, Sketche.class, true);
 			Log.i(TAG_LOG, "criou as tabelas");
 
 		}catch(Exception e){
@@ -44,6 +45,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try{
 //
 			TableUtils.dropTable(connectionSource, Pic.class, true);
+			TableUtils.dropTable(connectionSource, Sketche.class, true);
 	//		TableUtils.dropTable(connectionSource, Pic.class, arg2);
 //			TableUtils.dropTable(connectionSource, Categoria.class, arg2);
 		}catch(Exception e){

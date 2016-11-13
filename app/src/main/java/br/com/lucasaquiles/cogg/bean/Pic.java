@@ -1,6 +1,8 @@
 package br.com.lucasaquiles.cogg.bean;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
@@ -26,6 +28,18 @@ public class Pic implements Serializable {
 
     @DatabaseField
     private String emotion;
+
+    public ForeignCollection<Sketche> getSketches() {
+        return sketches;
+    }
+
+    public void setSketches(ForeignCollection<Sketche> sketches) {
+        this.sketches = sketches;
+    }
+
+    @ForeignCollectionField
+
+    private ForeignCollection<Sketche> sketches;
 
     public String getFilePath() {
         return filePath;
@@ -65,5 +79,13 @@ public class Pic implements Serializable {
 
     public void setAvatarPath(String avatarPath) {
         this.avatarPath = avatarPath;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
