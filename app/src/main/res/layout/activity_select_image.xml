@@ -12,6 +12,26 @@
     >
 
 
+    <br.com.lucasaquiles.cogg.view.CustomTextView
+        android:text="Voce ainda nao configurou nenhuma imagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:id="@+id/mensagem"
+        android:layout_marginTop="20dp"
+        android:textColor="#111"
+        android:textSize="30sp"/>
+
+    <br.com.lucasaquiles.cogg.view.CustomButtton
+        android:text="Configurar agora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        android:visibility="invisible"
+        android:id="@+id/configButton" />
 
 
     <GridView
@@ -19,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:columnWidth="150dp"
+
 
         android:drawSelectorOnTop="true"
         android:gravity="center"

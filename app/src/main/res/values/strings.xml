@@ -7,9 +7,9 @@
     <string name="title_activity_play">PlayActivity</string>
 
     <style name="tab_widget">
-        <item name="android:state_focused"> false</item>
-        <item name="android:state_selected"> false</item>
-        <item name="android:state_pressed"> false</item>
+        <item name="android:state_focused">false</item>
+        <item name="android:state_selected">false</item>
+        <item name="android:state_pressed">false</item>
         <item name="android:background">#00ffffff</item>
         <!--<item name="android:width">72dp</item>-->
         <!-- <item android:state_focused="false" android:state_selected="false" -->
@@ -29,7 +29,8 @@
         <item name="android:shadowDx">1</item>
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">2</item>
-    </style>r
+    </style>
+    r
 
     <style name="scrollItem">
         <item name="android:background">#00ffffff</item>
@@ -44,6 +45,7 @@
     <style name="mainMenu">
         <item name="android:background">#DCEBF6</item>
         <item name="android:colorBackground">#DCEBF6</item>
+        <item name="android:textColor">#111</item>
     </style>
 
     <style name="avatarLayout">
@@ -56,5 +58,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_image_config">ImageConfigActivity</string>
+    <string name="title_activity_finish">FinishActivity</string>
 
 </resources>

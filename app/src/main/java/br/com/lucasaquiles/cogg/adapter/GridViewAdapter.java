@@ -2,6 +2,7 @@ package br.com.lucasaquiles.cogg.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import br.com.lucasaquiles.cogg.PlayActivity;
 import br.com.lucasaquiles.cogg.R;
+import br.com.lucasaquiles.cogg.view.CustomButtton;
 import br.com.lucasaquiles.cogg.view.CustomTextView;
+import br.com.lucasaquiles.cogg.view.ImageConfigActivity;
 import br.com.lucasaquiles.cogg.view.ImageItem;
 
 /**
@@ -38,25 +42,65 @@ public class GridViewAdapter extends ArrayAdapter {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
             holder = new ViewHolder();
+
             holder.imageTitle = (CustomTextView ) row.findViewById(R.id.text);
             holder.image = (ImageView) row.findViewById(R.id.image);
+            holder.chooseButton  = (CustomButtton) row.findViewById(R.id.buttonChooseImage);
+
+            holder.configImage  = (CustomButtton) row.findViewById(R.id.buttonConfigImage);
+
             row.setTag(holder);
         } else {
             holder = (ViewHolder) row.getTag();
         }
 
-        ImageItem item = (ImageItem) data.get(position);
+        final ImageItem item = (ImageItem) data.get(position);
         holder.imageTitle.setText(item.getTitle());
-
-
-
         holder.image.setImageBitmap(item.getImage());
+
+
+        holder.chooseButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(context, PlayActivity.class);
+
+                    if(item.getResourceId() > 0) {
+                        intent.putExtra("byteArray", item.getResourceId());
+                    }else {
+                        intent.putExtra("filePath", item.getFilePath());
+                        intent.putExtra("title", item.getTitle());
+                        intent.putExtra("pic", item.getPic());
+                        intent.putExtra("config", false);
+                    }
+
+                    context.startActivity(intent);
+                }
+            });
+            holder.configImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent i = new Intent(context.getApplicationContext(), ImageConfigActivity.class);
+                    i.putExtra("filePath",  item.getFilePath());
+                    i.putExtra("titulo",  item.getPic().getTitle());
+                    i.putExtra("emocao",  item.getPic().getEmotion());
+                    i.putExtra("pic", item.getPic());
+
+
+                    context.startActivity(i);
+
+                }
+        });
+
         return row;
     }
 
     static class ViewHolder {
         CustomTextView  imageTitle;
         ImageView image;
+        CustomButtton chooseButton;
+        CustomButtton configImage;
     }
 
 }

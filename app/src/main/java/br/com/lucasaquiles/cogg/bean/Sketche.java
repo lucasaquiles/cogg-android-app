@@ -34,4 +34,36 @@ public class Sketche implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getPathImageBase() {
+        return pathImageBase;
+    }
+
+    public void setPathImageBase(String pathImageBase) {
+        this.pathImageBase = pathImageBase;
+    }
+
+    public String getPathToAvatar() {
+        return pathToAvatar;
+    }
+
+    public void setPathToAvatar(String pathToAvatar) {
+        this.pathToAvatar = pathToAvatar;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public Pic getPic() {
+        return pic;
+    }
+
+    public void setPic(Pic pic) {
+        this.pic = pic;
+    }
 }

@@ -7,20 +7,19 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.j256.ormlite.dao.DaoManager;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.lucasaquiles.cogg.PlayActivity;
 import br.com.lucasaquiles.cogg.R;
+import br.com.lucasaquiles.cogg.TakePictureActivity;
 import br.com.lucasaquiles.cogg.adapter.GridViewAdapter;
 import br.com.lucasaquiles.cogg.bean.Pic;
 import br.com.lucasaquiles.cogg.database.DatabaseHelper;
@@ -30,16 +29,42 @@ public class SelectImageActivity extends Activity implements AdapterView.OnItemC
     private GridView gridView;
     private GridViewAdapter gridAdapter;
 
+    private CustomTextView customTextView;
+    private CustomButtton customButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_image);
 
         gridView = (GridView) findViewById(R.id.gridView);
-        gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
-        gridView.setAdapter(gridAdapter);
 
-        gridView.setOnItemClickListener(this);
+        ArrayList<ImageItem> data = getData();
+
+        if(data.isEmpty()){
+
+
+            customTextView = (CustomTextView) findViewById(R.id.mensagem);
+            customButton = (CustomButtton) findViewById(R.id.configButton);
+
+        customTextView.setVisibility(View.VISIBLE);
+            customButton.setVisibility(View.VISIBLE);
+            customButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent i = new Intent(getApplicationContext(), TakePictureActivity.class);
+                    startActivity(i);
+                }
+            });
+        }else{
+            gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
+            gridView.setAdapter(gridAdapter);
+
+            gridView.setOnItemClickListener(this);
+        }
+
+
     }
 
 
@@ -80,27 +105,6 @@ public class SelectImageActivity extends Activity implements AdapterView.OnItemC
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + "/Cogg");
-
-//        if(path.exists()) {
-//            String[] fileNames = path.list();
-//
-//            for(int i = 0; i < fileNames.length; i++) {
-//
-//                String filePath = path.getPath() + "/" + fileNames[i];
-//
-//                Drawable draw = Drawable.createFromPath(filePath);
-//                if (draw instanceof BitmapDrawable) {
-//                    BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
-//                    if (bitmapDrawable.getBitmap() != null) {
-//
-//                        Bitmap bitmap = bitmapDrawable.getBitmap();
-//                        imageItems.add(new ImageItem(bitmap, fileNames[i],  filePath));
-//                    }
-//                }
-//            }
-//        }
 
         return imageItems;
     }

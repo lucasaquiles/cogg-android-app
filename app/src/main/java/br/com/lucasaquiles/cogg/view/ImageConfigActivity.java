@@ -34,6 +34,7 @@ public class ImageConfigActivity extends Activity{
     private Button button;
 
     private String filePath;
+    private Pic pic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class ImageConfigActivity extends Activity{
         setContentView(R.layout.activity_image_config);
 
         Bundle extras = getIntent().getExtras();
-        Toast.makeText(this, "arquivo "+extras.getString("filePath"), Toast.LENGTH_LONG).show();
+
 
 
         imageView = (ImageView) findViewById(R.id.imageView10);
@@ -54,12 +55,12 @@ public class ImageConfigActivity extends Activity{
             @Override
             public void onClick(View v) {
 
-                Pic pic = new Pic();
+                if(pic == null) {
+                    pic = new Pic();
+                }
+
                 pic.setEmotion(editTextEmotion.getText().toString());
                 pic.setTitle(editTextTitle.getText().toString());
-                pic.setAvatarPath("");
-                pic.setFilePath(filePath);
-
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
 
@@ -67,15 +68,32 @@ public class ImageConfigActivity extends Activity{
 
                     Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
 
-                    if(dao.create(pic) == 1){
-                        Toast.makeText(getApplicationContext(), "Imagem salva", Toast.LENGTH_LONG).show();
+                    if(pic.getId() == null ) {
+
+                        pic.setAvatarPath("");
+                        pic.setFilePath(filePath);
+
+                        if (dao.create(pic) == 1) {
+                            Toast.makeText(getApplicationContext(), "Imagem salva", Toast.LENGTH_LONG).show();
+
+                            Intent i = new Intent(getApplicationContext(), PlayActivity.class);
+                            i.putExtra("filePath", filePath);
+                            i.putExtra("pic", pic);
+                            i.putExtra("config", true);
+                            startActivity(i);
+                        }
+                    }else{
 
 
-                        Intent i = new Intent(getApplicationContext(), PlayActivity.class);
-                        i.putExtra("filePath", filePath);
-                        i.putExtra("pic", pic);
+                        if (dao.update(pic) == 1) {
 
-                        startActivity(i);
+                            Intent i = new Intent(getApplicationContext(), PlayActivity.class);
+                            i.putExtra("filePath", filePath);
+                            i.putExtra("pic", pic);
+                            i.putExtra("config", true);
+
+                            startActivity(i);
+                        }
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -96,6 +114,13 @@ public class ImageConfigActivity extends Activity{
                 imageView.setImageBitmap(bitmap);
             }
         }
+
+        String emocao = extras.getString("emocao");
+        editTextEmotion.setText(emocao);
+        String titulo = extras.getString("titulo");
+        editTextTitle.setText(titulo);
+
+        this.pic = (Pic) getIntent().getSerializableExtra("pic");
 
         // Bitmap b = BitmapFactory.decodeByteArray(
         // getIntent().getByteArrayExtra("byteArray"), 0, getIntent().getByteArrayExtra("byteArray").length);

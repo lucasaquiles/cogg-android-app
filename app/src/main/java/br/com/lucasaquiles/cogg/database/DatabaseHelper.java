@@ -28,7 +28,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		onUpgrade(db, connectionSource, 0, 0);
 		try{
 			TableUtils.createTable(connectionSource, Pic.class);
-			TableUtils.dropTable(connectionSource, Sketche.class, true);
+			TableUtils.createTable(connectionSource, Sketche.class);
 			Log.i(TAG_LOG, "criou as tabelas");
 
 		}catch(Exception e){

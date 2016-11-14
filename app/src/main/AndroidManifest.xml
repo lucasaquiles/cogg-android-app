@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.lucasaquiles.cogg" android:versionCode="2" android:versionName="2.0">
+    package="br.com.lucasaquiles.cogg"
+    android:versionCode="2"
+    android:versionName="2.0">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -37,7 +39,10 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".view.ImageConfigActivity"
-            android:label="@string/title_activity_image_config"></activity>
+            android:label="@string/title_activity_image_config" />
+        <activity
+            android:name=".FinishActivity"
+            android:label="@string/title_activity_finish"></activity>
     </application>
 
 </manifest>

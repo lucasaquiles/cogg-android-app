@@ -10,18 +10,29 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/_head_2_ic"
         android:layout_height="wrap_content" />
 
     <br.com.lucasaquiles.cogg.view.CustomTextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-
         android:text="jakslf;jaksfjads"
         android:textColor="#000"
-
         android:textSize="30sp" />
+
+    <br.com.lucasaquiles.cogg.view.CustomButtton
+        android:text="Configurar Imagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="fonts/cherl.tff"
+        android:id="@+id/buttonConfigImage"  />
+    <br.com.lucasaquiles.cogg.view.CustomButtton
+        android:text="Selecionar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="fonts/cherl.tff"
+        android:id="@+id/buttonChooseImage" />
 
 </LinearLayout>

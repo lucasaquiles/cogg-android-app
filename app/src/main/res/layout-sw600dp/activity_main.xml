@@ -44,7 +44,7 @@
 
             android:id="@+id/btnNewPic"
 
-            android:background="@drawable/buttons_14"
+            android:background="@drawable/buttons_17"
             />
 
         <Button
@@ -56,7 +56,7 @@
 
             android:id="@+id/btnChoosePic"
 
-            android:background="@drawable/buttons_17"
+            android:background="@drawable/buttons_14"
             />
 
     </LinearLayout>

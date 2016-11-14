@@ -45,6 +45,8 @@
     <style name="mainMenu">
         <item name="android:background">#DCEBF6</item>
         <item name="android:colorBackground">#DCEBF6</item>
+        <item name="android:textColor">#111</item>
+
     </style>
 
     <style name="avatarLayout">

@@ -39,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.com.lucasaquiles.cogg.bean.Pic;
+import br.com.lucasaquiles.cogg.bean.Sketche;
 import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 import br.com.lucasaquiles.cogg.view.ItemFaceView;
 
@@ -60,6 +61,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
     private TextView textViewTitleImage;
     private Button saveButton;
     private LinearLayout image;
+    private Boolean config;
 
     private Pic pic;
 
@@ -254,6 +256,9 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
             imageViewBase.setImageBitmap(b);
         }else{
+
+            config = intent.getBooleanExtra("config", false);
+
             pic = (Pic) intent.getSerializableExtra("pic");
             String filePath = extras.getString("filePath");
             String title = extras.getString("title");
@@ -269,11 +274,10 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             }
 
         }
-
+        Toast.makeText(this, "ta rolando em: "+config, Toast.LENGTH_LONG).show();
     }
 
     public void initializeComponents(){
-
 
         final RelativeLayout seekBarLayout = (RelativeLayout) findViewById(R.id.seekBarLayout);
         imageViewBase = (ImageView) findViewById(R.id.imageViewBase);
@@ -392,7 +396,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             image.setDrawingCacheEnabled(false);
 
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 40, bytes);
 
             String path = Environment.DIRECTORY_PICTURES + File.separator + "Cogg" ;
             File sdDir = Environment.getExternalStoragePublicDirectory(path);
@@ -425,20 +429,58 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+            if(config) {
 
-            pic.setAvatarPath(filename);
-            try {
+                pic.setAvatarPath(filename);
+                try {
 
-                DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-                Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
 
-                if (dao.update(pic) == 1) {
-                    Toast.makeText(this, "atualizou na base "+pic.getAvatarPath(), Toast.LENGTH_LONG).show();
+                    Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
+
+                    if (dao.update(pic) == 1) {
+                        Toast.makeText(this, "atualizou na base " + pic.getAvatarPath(), Toast.LENGTH_LONG).show();
+                    }
+                } catch (SQLException e) {
+
                 }
-            }catch(SQLException e){
+                Toast.makeText(this, "vai salvar", Toast.LENGTH_LONG).show();
+            }else{
+
+                Sketche sk = new Sketche();
+                sk.setPathImageBase(pic.getAvatarPath());
+
+                sk.setPic(pic);
+                sk.setPathToAvatar(filename);
+
+
+                try {
+                    Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
+
+                    Dao<Sketche, Integer> sketcheDao = DaoManager.createDao(databaseHelper.getConnectionSource(), Sketche.class);
+
+                    if(sketcheDao.create(sk) == 1){
+                        Toast.makeText(this, "criou o sketch " + pic.getAvatarPath(), Toast.LENGTH_LONG).show();
+                        dao.assignEmptyForeignCollection(pic, "sketches");
+
+                        pic.getSketches().add(sk);
+
+                        if (dao.update(pic) == 1) {
+
+                            Intent i = new Intent(this, FinishActivity.class);
+                            i.putExtra("pic", pic);
+                            i.putExtra( "current_sketch", sk);
+                            startActivity(i);
+                        }
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+
 
             }
-            Toast.makeText(this, "vai salvar", Toast.LENGTH_LONG).show();
         }
 
         if(v.getId() == backButton.getId()){
