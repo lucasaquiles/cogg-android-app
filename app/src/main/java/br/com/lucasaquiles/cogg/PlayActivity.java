@@ -410,7 +410,8 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             }
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
-            String date = dateFormat.format(new Date());
+            Date data = new Date();
+            String date = dateFormat.format(data);
             String filename = fileDir.getPath() + File.separator + date+"nomedaFoto.jpg";
 
             File f = new File(filename);
@@ -452,7 +453,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
                 sk.setPic(pic);
                 sk.setPathToAvatar(filename);
-
+                sk.setData(data);
 
                 try {
                     Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);

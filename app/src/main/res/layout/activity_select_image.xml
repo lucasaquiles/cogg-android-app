@@ -20,6 +20,9 @@
         android:layout_centerInParent="true"
         android:visibility="invisible"
         android:id="@+id/mensagem"
+        android:shadowDx="-1"
+        android:shadowDy="-1"
+        android:shadowColor="#000"
         android:layout_marginTop="20dp"
         android:textColor="#111"
         android:textSize="30sp"/>
@@ -40,12 +43,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
 
-
         android:drawSelectorOnTop="true"
         android:gravity="center"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp"
+        android:verticalSpacing="5dp"
         android:focusable="true"
         android:clickable="true"/>
 </RelativeLayout>

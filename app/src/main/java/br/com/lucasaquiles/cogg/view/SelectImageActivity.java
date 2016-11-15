@@ -47,7 +47,7 @@ public class SelectImageActivity extends Activity implements AdapterView.OnItemC
             customTextView = (CustomTextView) findViewById(R.id.mensagem);
             customButton = (CustomButtton) findViewById(R.id.configButton);
 
-        customTextView.setVisibility(View.VISIBLE);
+            customTextView.setVisibility(View.VISIBLE);
             customButton.setVisibility(View.VISIBLE);
             customButton.setOnClickListener(new View.OnClickListener() {
                 @Override

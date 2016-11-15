@@ -10,6 +10,7 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
+
         android:layout_gravity="center"
         android:src="@drawable/_head_2_ic"
         android:layout_height="wrap_content" />
@@ -18,6 +19,8 @@
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="jakslf;jaksfjads"
         android:textColor="#000"
         android:textSize="30sp" />
@@ -26,13 +29,27 @@
         android:text="Configurar Imagem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_layout"
         android:tag="fonts/cherl.tff"
+        android:layout_marginTop="15dp"
         android:id="@+id/buttonConfigImage"  />
+
     <br.com.lucasaquiles.cogg.view.CustomButtton
         android:text="Selecionar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_layout"
         android:tag="fonts/cherl.tff"
+        android:layout_marginTop="15dp"
         android:id="@+id/buttonChooseImage" />
+
+    <br.com.lucasaquiles.cogg.view.CustomButtton
+        android:text="Colagens"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="fonts/cherl.tff"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btn_layout"
+        android:id="@+id/verColagens" />
 
 </LinearLayout>

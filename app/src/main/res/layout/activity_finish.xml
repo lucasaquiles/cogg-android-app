@@ -9,10 +9,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    style="@style/mainMenu"
+    style="@style/mainMenu"  android:background="#FFE9CE37"
     tools:context="br.com.lucasaquiles.cogg.FinishActivity">
 
-
+<br.com.lucasaquiles.cogg.view.CustomButtton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:text="voltar"
+    android:padding="10dp" android:background="@drawable/btn_layout" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
 
     <ImageView
         android:layout_width="wrap_content"
@@ -62,6 +70,6 @@
         android:id="@+id/emocao"
 
         />
-
+    </RelativeLayout>
 
 </RelativeLayout>

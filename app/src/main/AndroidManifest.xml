@@ -42,7 +42,10 @@
             android:label="@string/title_activity_image_config" />
         <activity
             android:name=".FinishActivity"
-            android:label="@string/title_activity_finish"></activity>
+            android:label="@string/title_activity_finish" />
+        <activity
+            android:name=".ResumoActivity"
+            android:label="@string/title_activity_resumo"></activity>
     </application>
 
 </manifest>

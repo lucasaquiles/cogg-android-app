@@ -59,5 +59,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_image_config">ImageConfigActivity</string>
     <string name="title_activity_finish">FinishActivity</string>
+    <string name="title_activity_resumo">ResumoActivity</string>
 
 </resources>

@@ -6,38 +6,62 @@
     android:focusableInTouchMode="true"
     >
 
-    <LinearLayout
-        android:layout_width="250dp"  android:id="@+id/wrap" android:layout_centerHorizontal="true"
-        android:layout_height="250dp" android:background="@drawable/circle" android:padding="5dp">
 
-    <br.com.lucasaquiles.cogg.view.RoundedImageView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView10"
+        android:layout_centerInParent="true"
 
-         />
-</LinearLayout>
+        >
+
+
+
+    <LinearLayout
+        android:layout_width="250dp"  android:layout_marginTop="20dp" android:id="@+id/wrap" android:layout_centerHorizontal="true"
+        android:layout_height="250dp" android:layout_marginBottom="20dp"  android:padding="5dp">
+
+        <br.com.lucasaquiles.cogg.view.RoundedImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/imageView10"
+             />
+    </LinearLayout>
+
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:hint="Titulo da imagems"
         android:id="@+id/editText1" android:layout_below="@+id/wrap"
+        android:textColorHint="#444"
+        android:textColor="#000"
+        android:padding="5dp"
+
          />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:hint="Qual a expressão?"
         android:id="@+id/editText2" android:layout_below="@+id/editText1"
+        android:textColor="#000"
+        android:textColorHint="#444"
+        android:padding="5dp"
          />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Salvar imagem"
+        android:background="@drawable/btn_layout"
         android:id="@+id/buttonConfirm"
         android:layout_below="@+id/editText2"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true" />
-
+    </RelativeLayout>
 
 </RelativeLayout>

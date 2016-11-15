@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import br.com.lucasaquiles.cogg.PlayActivity;
 import br.com.lucasaquiles.cogg.R;
+import br.com.lucasaquiles.cogg.ResumoActivity;
 import br.com.lucasaquiles.cogg.view.CustomButtton;
 import br.com.lucasaquiles.cogg.view.CustomTextView;
 import br.com.lucasaquiles.cogg.view.ImageConfigActivity;
@@ -22,8 +23,8 @@ import br.com.lucasaquiles.cogg.view.ImageItem;
  * Created by lucasaquiles on 1/4/16.
  */
 public class GridViewAdapter extends ArrayAdapter {
-    private Context context;
     private int layoutResourceId;
+    private Context context;
     private ArrayList data = new ArrayList();
 
     public GridViewAdapter(Context context, int layoutResourceId, ArrayList data) {
@@ -48,6 +49,7 @@ public class GridViewAdapter extends ArrayAdapter {
             holder.chooseButton  = (CustomButtton) row.findViewById(R.id.buttonChooseImage);
 
             holder.configImage  = (CustomButtton) row.findViewById(R.id.buttonConfigImage);
+            holder.verColagens  = (CustomButtton) row.findViewById(R.id.verColagens);
 
             row.setTag(holder);
         } else {
@@ -58,6 +60,15 @@ public class GridViewAdapter extends ArrayAdapter {
         holder.imageTitle.setText(item.getTitle());
         holder.image.setImageBitmap(item.getImage());
 
+        holder.verColagens.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, ResumoActivity.class);
+                intent.putExtra("pic", item.getPic());
+                context.startActivity(intent);
+            }
+        });
 
         holder.chooseButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -101,6 +112,7 @@ public class GridViewAdapter extends ArrayAdapter {
         ImageView image;
         CustomButtton chooseButton;
         CustomButtton configImage;
+        CustomButtton verColagens;
     }
 
 }
