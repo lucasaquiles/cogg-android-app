@@ -4,11 +4,18 @@
     style="@style/mainMenu"
      tools:context=".MainActivity"  >
 
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_centerInParent="true">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_marginBottom="10dp"
+
+
         android:background="@drawable/cogg_logo"
 
         android:layout_centerHorizontal="true" />
@@ -16,31 +23,29 @@
         android:orientation="vertical"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-
+        android:padding="10dp"
         android:layout_below="@+id/imageView"
         android:background="@drawable/menu_wrapper_layout"
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content">
-
-
-
+        
         <Button
 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="4dp"
+
+        android:id="@+id/buttonInit"
+
+        android:background="@drawable/buttons_09"
+        />
+
+    <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginBottom="4dp"
-
-            android:id="@+id/buttonInit"
-
-            android:background="@drawable/buttons_09"
-            />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginBottom="4dp"
+            android:layout_margin="4dp"
 
             android:id="@+id/btnNewPic"
 
@@ -52,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginBottom="4dp"
+            android:layout_margin="4dp"
 
             android:id="@+id/btnChoosePic"
 
@@ -60,6 +65,6 @@
             />
 
     </LinearLayout>
-
+    </RelativeLayout>
 
 </RelativeLayout>
