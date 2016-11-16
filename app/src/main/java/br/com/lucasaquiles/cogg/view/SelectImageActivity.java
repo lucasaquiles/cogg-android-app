@@ -116,10 +116,6 @@ public class SelectImageActivity extends Activity implements AdapterView.OnItemC
         ImageItem item = (ImageItem) parent.getItemAtPosition(position);
         //Create intent
         Intent intent = new Intent(this, PlayActivity.class);
-        //intent.putExtra("title", item.getTitle());
-        //intent.putExtra("image", item.getImage());
-        //ByteArrayOutputStream bs = new ByteArrayOutputStream();
-        //item.getImage().compress(Bitmap.CompressFormat.JPEG, 50, bs);
 
         if(item.getResourceId() > 0) {
             intent.putExtra("byteArray", item.getResourceId());

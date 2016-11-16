@@ -10,6 +10,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
+import com.j256.ormlite.dao.DaoManager;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import br.com.lucasaquiles.cogg.bean.Pic;
+import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 import br.com.lucasaquiles.cogg.view.SelectImageActivity;
 
 
@@ -70,6 +77,25 @@ public class MainActivity extends Activity implements View.OnClickListener{
         if(v.equals(buttonInit)){
 
             Intent i = new Intent(this,PlayActivity.class);
+
+            try {
+                List<Pic> list =  DaoManager.createDao(new DatabaseHelper(this).getConnectionSource(), Pic.class).queryForAll();
+
+                int position = (int) Math.random() * list.size();
+
+                Pic pic = list.get(position);
+
+                Intent intent = new Intent(this, PlayActivity.class);
+
+                intent.putExtra("filePath", pic.getAvatarPath());
+                intent.putExtra("title", pic.getTitle());
+                intent.putExtra("pic", pic);
+                intent.putExtra("config", true);
+
+                startActivity(intent);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
             startActivity(i);
 

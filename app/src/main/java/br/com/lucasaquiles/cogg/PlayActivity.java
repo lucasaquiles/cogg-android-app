@@ -260,6 +260,8 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             config = intent.getBooleanExtra("config", false);
 
             pic = (Pic) intent.getSerializableExtra("pic");
+
+
             String filePath = extras.getString("filePath");
             String title = extras.getString("title");
             Drawable draw = Drawable.createFromPath(filePath);
@@ -274,7 +276,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             }
 
         }
-        Toast.makeText(this, "ta rolando em: "+config, Toast.LENGTH_LONG).show();
+
     }
 
     public void initializeComponents(){
