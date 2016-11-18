@@ -13,7 +13,9 @@
         android:layout_toLeftOf="@+id/title"
         android:src="@drawable/_head_2_ic"
         android:layout_height="80dp"
+        android:layout_margin="10dp"
         android:layout_marginRight="20dp"
+        
         />
 
     <RelativeLayout
