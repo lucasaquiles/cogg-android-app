@@ -28,7 +28,6 @@ public class FinishActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish);
 
-
         backButton = (CustomButtton) findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

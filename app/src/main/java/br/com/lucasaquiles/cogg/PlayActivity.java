@@ -262,8 +262,13 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             pic = (Pic) intent.getSerializableExtra("pic");
 
 
-            String filePath = extras.getString("filePath");
-            String title = extras.getString("title");
+            String filePath =  "";
+            String title = "";
+            if(extras != null) {
+                filePath = extras.getString("filePath");
+                title = extras.getString("title");
+            }
+
             Drawable draw = Drawable.createFromPath(filePath);
             if (draw instanceof BitmapDrawable) {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
