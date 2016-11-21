@@ -169,16 +169,7 @@
                    />
 
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/nose_1_ic_opened"
-            android:id="@+id/imageViewNose"
-            android:layout_weight="5"
-            android:layout_marginTop="2dp"
 
-            android:layout_gravity="center"
-            />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -198,10 +189,21 @@
             android:id="@+id/imageViewMouth"
 
             android:layout_weight="5"
-            android:layout_marginTop="35dp"
-            android:layout_gravity="center"
+            android:layout_marginTop="150dp"
+            android:layout_gravity="center_horizontal"
             />
 
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nose_1_ic_opened"
+            android:id="@+id/imageViewNose"
+            android:layout_weight="5"
+            android:layout_marginTop="120dp"
+
+            android:layout_gravity="center_horizontal"
+            />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
