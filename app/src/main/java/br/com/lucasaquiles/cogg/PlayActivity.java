@@ -462,7 +462,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
                     Dao<Sketche, Integer> sketcheDao = DaoManager.createDao(databaseHelper.getConnectionSource(), Sketche.class);
 
-                    if(sketcheDao.create(sk) == 1){
+                    //if(sketcheDao.create(sk) == 1){
                         Toast.makeText(this, "criou o sketch " + pic.getAvatarPath(), Toast.LENGTH_LONG).show();
                         dao.assignEmptyForeignCollection(pic, "sketches");
 
@@ -475,7 +475,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                             i.putExtra( "current_sketch", sk);
                             startActivity(i);
                         }
-                    }
+                  //  }
 
                 } catch (SQLException e) {
                     e.printStackTrace();
