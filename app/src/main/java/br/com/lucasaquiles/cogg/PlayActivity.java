@@ -78,6 +78,48 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
         initializeComponents();
 
+
+        Intent intent = getIntent();
+
+        // Bitmap b = BitmapFactory.decodeByteArray(
+        // getIntent().getByteArrayExtra("byteArray"), 0, getIntent().getByteArrayExtra("byteArray").length);
+
+        Bundle extras = intent.getExtras();
+
+        if(extras != null && extras.getInt("byteArray") > 0) {
+            int resourceId = extras.getInt("byteArray");
+
+            Resources res = this.getResources();
+
+            Bitmap b = BitmapFactory.decodeResource(res, resourceId);
+
+            imageViewBase.setImageBitmap(b);
+        }else{
+
+            config = intent.getBooleanExtra("config", false);
+
+            pic = (Pic) intent.getSerializableExtra("pic");
+
+            String filePath =  "";
+            String title = "";
+            if(extras != null) {
+                filePath = extras.getString("filePath");
+                title = extras.getString("title");
+            }
+
+            Drawable draw = Drawable.createFromPath(filePath);
+            if (draw instanceof BitmapDrawable) {
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
+                if (bitmapDrawable.getBitmap() != null) {
+
+                    Bitmap bitmap = bitmapDrawable.getBitmap();
+                    imageViewBase.setImageBitmap(bitmap);
+//                    textViewTitleImage.setText(title);
+                }
+            }
+
+        }
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             int progress = 0;
@@ -238,49 +280,9 @@ public class PlayActivity extends Activity implements View.OnClickListener {
         });
 
 
-        Intent intent = getIntent();
-
-       // Bitmap b = BitmapFactory.decodeByteArray(
-       // getIntent().getByteArrayExtra("byteArray"), 0, getIntent().getByteArrayExtra("byteArray").length);
-
-        Bundle extras = intent.getExtras();
-
-        if(extras != null && extras.getInt("byteArray") > 0) {
-            int resourceId = extras.getInt("byteArray");
-
-            Resources res = this.getResources();
-
-            Bitmap b = BitmapFactory.decodeResource(res, resourceId);
-
-            imageViewBase.setImageBitmap(b);
-        }else{
-
-            config = intent.getBooleanExtra("config", false);
-
-            pic = (Pic) intent.getSerializableExtra("pic");
-
-
-            String filePath =  "";
-            String title = "";
-            if(extras != null) {
-                filePath = extras.getString("filePath");
-                title = extras.getString("title");
-            }
-
-            Drawable draw = Drawable.createFromPath(filePath);
-            if (draw instanceof BitmapDrawable) {
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
-                if (bitmapDrawable.getBitmap() != null) {
-
-                    Bitmap bitmap = bitmapDrawable.getBitmap();
-                    imageViewBase.setImageBitmap(bitmap);
-//                    textViewTitleImage.setText(title);
-                }
-            }
-
-        }
 
     }
+
 
     public void initializeComponents(){
 

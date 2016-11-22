@@ -90,14 +90,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 intent.putExtra("filePath", pic.getAvatarPath());
                 intent.putExtra("title", pic.getTitle());
                 intent.putExtra("pic", pic);
-                intent.putExtra("config", true);
+                intent.putExtra("config", false);
 
                 startActivity(intent);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            startActivity(i);
+
 
         }
 
