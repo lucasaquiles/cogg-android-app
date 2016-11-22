@@ -1,7 +1,9 @@
 package br.com.lucasaquiles.cogg.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
@@ -76,23 +78,59 @@ public class ImageConfigActivity extends Activity{
                         if (dao.create(pic) == 1) {
                             Toast.makeText(getApplicationContext(), "Imagem salva", Toast.LENGTH_LONG).show();
 
-                            Intent i = new Intent(getApplicationContext(), PlayActivity.class);
-                            i.putExtra("filePath", filePath);
-                            i.putExtra("pic", pic);
-                            i.putExtra("config", true);
-                            startActivity(i);
+                            new AlertDialog.Builder(getApplicationContext())
+                                    .setTitle("Configurar avatar")
+                                    .setMessage("Você quer configurar a imagem?")
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            Intent i = new Intent(getApplicationContext(), PlayActivity.class);
+                                            i.putExtra("filePath", filePath);
+                                            i.putExtra("pic", pic);
+                                            i.putExtra("config", true);
+                                            startActivity(i);
+                                        }})
+                                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(getApplicationContext(), SelectImageActivity.class);
+                                            startActivity(i);
+                                        }
+                                    }).show();
+
+
                         }
                     }else{
 
 
                         if (dao.update(pic) == 1) {
 
-                            Intent i = new Intent(getApplicationContext(), PlayActivity.class);
-                            i.putExtra("filePath", filePath);
-                            i.putExtra("pic", pic);
-                            i.putExtra("config", true);
 
-                            startActivity(i);
+                            new AlertDialog.Builder(ImageConfigActivity.this)
+                                    .setTitle("Configurar avatar")
+                                    .setMessage("Você quer configurar a imagem?")
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            Intent i = new Intent(ImageConfigActivity.this, PlayActivity.class);
+                                            i.putExtra("filePath", filePath);
+                                            i.putExtra("pic", pic);
+                                            i.putExtra("config", true);
+
+                                            startActivity(i);
+                                        }})
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    Intent i = new Intent(ImageConfigActivity.this, SelectImageActivity.class);
+                                    startActivity(i);
+                                }
+                            }).show();
+
+
                         }
                     }
                 } catch (SQLException e) {

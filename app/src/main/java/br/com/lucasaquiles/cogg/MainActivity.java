@@ -97,8 +97,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 e.printStackTrace();
             }
 
-
-
         }
 
         if(v.equals(btnNewPic)){
