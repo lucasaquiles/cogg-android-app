@@ -11,9 +11,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by lucasaquiles on 12/16/15.
  */
@@ -84,12 +81,65 @@ public class ImageUtils {
     }
 
 
+    /**
+     * retorna o percentual de diferenca entre as duas imagens
+     * @param firstImage
+     * @param secondImage
+     * @return
+     */
+    public static double calcDiference(Bitmap firstImage, Bitmap secondImage){
 
-
-    public static Bitmap findDifference(Bitmap firstImage, Bitmap secondImage) {
         Bitmap bmp = secondImage.copy(secondImage.getConfig(), true);
 
-        List<Integer> pixels = new ArrayList<Integer>();
+        long diff = 0;
+
+        int width1 = firstImage.getWidth();
+        int width2 = secondImage.getWidth();
+        int height1 = firstImage.getHeight();
+        int height2 = secondImage.getHeight();
+
+        if (firstImage.getWidth() != secondImage.getWidth()
+                || firstImage.getHeight() != secondImage.getHeight()) {
+            return 0.0;
+        }
+
+        for (int i = 0; i < firstImage.getWidth(); i++) {
+            for (int j = 0; j < firstImage.getHeight(); j++) {
+                if (firstImage.getPixel(i, j) != secondImage.getPixel(i, j)) {
+
+                 //   bmp.setPixel(i, j, Color.YELLOW);
+                }
+
+                int rgb1 = firstImage.getPixel(i, j);
+                int rgb2 = secondImage.getPixel(i,j);
+                int r1 = (rgb1 >> 16) & 0xff;
+                int g1 = (rgb1 >>  8) & 0xff;
+                int b1 = (rgb1      ) & 0xff;
+                int r2 = (rgb2 >> 16) & 0xff;
+                int g2 = (rgb2 >>  8) & 0xff;
+                int b2 = (rgb2      ) & 0xff;
+                diff += Math.abs(r1 - r2);
+                diff += Math.abs(g1 - g2);
+                diff += Math.abs(b1 - b2);
+
+            }
+        }
+
+        double n = width1 * height1 * 3;
+        double p = diff / n / 255.0;
+
+        double percentagem =   (p * 100.0);
+        return percentagem;
+    }
+
+    /**
+     * destaca a diferenca entre duas imagens
+     * @param firstImage
+     * @param secondImage
+     * @return
+     */
+    public static Bitmap findDifference(Bitmap firstImage, Bitmap secondImage) {
+        Bitmap bmp = secondImage.copy(secondImage.getConfig(), true);
 
         if (firstImage.getWidth() != secondImage.getWidth()
                 || firstImage.getHeight() != secondImage.getHeight()) {
@@ -101,20 +151,11 @@ public class ImageUtils {
                 if (firstImage.getPixel(i, j) != secondImage.getPixel(i, j)) {
 
                     bmp.setPixel(i, j, Color.YELLOW);
-
-                    pixels.add(bmp.getPixel(i,j));
-                }else{
-
-                    bmp.setPixel(i, j, Color.GRAY);
                 }
             }
         }
 
-
-
        return bmp;
-
-       // imgOutput.setImageBitmap(bmp);
     }
 
 }
