@@ -76,28 +76,14 @@ public class ImageConfigActivity extends Activity{
                         pic.setFilePath(filePath);
 
                         if (dao.create(pic) == 1) {
-                            Toast.makeText(getApplicationContext(), "Imagem salva", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "Imagem salva", Toast.LENGTH_LONG).show();
 
-                            new AlertDialog.Builder(getApplicationContext())
-                                    .setTitle("Configurar avatar")
-                                    .setMessage("Você quer configurar a imagem?")
-                                    .setIcon(android.R.drawable.ic_dialog_alert)
-                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            Intent i = new Intent(getApplicationContext(), PlayActivity.class);
+                                            Intent i = new Intent(ImageConfigActivity.this, PlayActivity.class);
                                             i.putExtra("filePath", filePath);
                                             i.putExtra("pic", pic);
                                             i.putExtra("config", true);
                                             startActivity(i);
-                                        }})
-                                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent i = new Intent(getApplicationContext(), SelectImageActivity.class);
-                                            startActivity(i);
-                                        }
-                                    }).show();
 
 
                         }

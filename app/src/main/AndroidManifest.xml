@@ -45,7 +45,10 @@
             android:label="@string/title_activity_finish" />
         <activity
             android:name=".ResumoActivity"
-            android:label="@string/title_activity_resumo"></activity>
+            android:label="@string/title_activity_resumo" />
+        <activity
+            android:name=".view.DetailActivity"
+            android:label="@string/title_activity_detail"></activity>
     </application>
 
 </manifest>

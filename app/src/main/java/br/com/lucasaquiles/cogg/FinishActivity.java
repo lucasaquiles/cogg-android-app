@@ -65,6 +65,8 @@ public class FinishActivity extends Activity {
             }
         }
 
+
+
         title.setText(pic.getTitle());
         emocao.setText(pic.getEmotion());
 

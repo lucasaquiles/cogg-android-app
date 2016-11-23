@@ -60,5 +60,6 @@
     <string name="title_activity_image_config">ImageConfigActivity</string>
     <string name="title_activity_finish">FinishActivity</string>
     <string name="title_activity_resumo">ResumoActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
 
 </resources>

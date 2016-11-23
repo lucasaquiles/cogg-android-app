@@ -8,13 +8,17 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lucasaquiles on 12/16/15.
  */
 public class ImageUtils {
-
+    private static final int threashold = 10;
     public void onDraw(ImageView image) {
 
         Bitmap workingBitmap =  Bitmap.createBitmap(((BitmapDrawable) image.getDrawable()).getBitmap());
@@ -59,4 +63,58 @@ public class ImageUtils {
 
         return sbmp;
     }
+
+
+    public static Bitmap getBitmapByPath(String path){
+
+        Drawable draw = Drawable.createFromPath(path);
+        if (draw instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
+            if (bitmapDrawable.getBitmap() != null) {
+
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+
+                return bitmap;
+//                image.setImageBitmap(bitmap);
+//                    textViewTitleImage.setText(title);
+            }
+        }
+
+        return null;
+    }
+
+
+
+
+    public static Bitmap findDifference(Bitmap firstImage, Bitmap secondImage) {
+        Bitmap bmp = secondImage.copy(secondImage.getConfig(), true);
+
+        List<Integer> pixels = new ArrayList<Integer>();
+
+        if (firstImage.getWidth() != secondImage.getWidth()
+                || firstImage.getHeight() != secondImage.getHeight()) {
+            return null;
+        }
+
+        for (int i = 0; i < firstImage.getWidth(); i++) {
+            for (int j = 0; j < firstImage.getHeight(); j++) {
+                if (firstImage.getPixel(i, j) != secondImage.getPixel(i, j)) {
+
+                    bmp.setPixel(i, j, Color.YELLOW);
+
+                    pixels.add(bmp.getPixel(i,j));
+                }else{
+
+                    bmp.setPixel(i, j, Color.GRAY);
+                }
+            }
+        }
+
+
+
+       return bmp;
+
+       // imgOutput.setImageBitmap(bmp);
+    }
+
 }

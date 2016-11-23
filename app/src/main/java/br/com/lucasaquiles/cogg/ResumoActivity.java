@@ -3,6 +3,8 @@ package br.com.lucasaquiles.cogg;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -17,8 +19,9 @@ import br.com.lucasaquiles.cogg.adapter.ResumoListAdapter;
 import br.com.lucasaquiles.cogg.bean.Pic;
 import br.com.lucasaquiles.cogg.bean.Sketche;
 import br.com.lucasaquiles.cogg.database.DatabaseHelper;
+import br.com.lucasaquiles.cogg.view.DetailActivity;
 
-public class ResumoActivity extends Activity {
+public class ResumoActivity extends Activity implements AdapterView.OnItemClickListener {
 
     private Pic pic;
     private ImageView image;
@@ -50,6 +53,9 @@ public class ResumoActivity extends Activity {
 
         adapter = new ResumoListAdapter(this, R.layout.resumo_item_list, sks);
         listView.setAdapter(adapter);
+
+
+        listView.setOnItemClickListener(this);
 //        image = (ImageView) findViewById(R.id.image);
 //
 //        Drawable draw = Drawable.createFromPath(pic.getAvatarPath());
@@ -64,4 +70,13 @@ public class ResumoActivity extends Activity {
 //        }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Sketche stetche = (Sketche) parent.getItemAtPosition(position);
+
+        Intent i = new Intent(this, DetailActivity.class);
+        i.putExtra("current", stetche);
+        startActivity(i);
+    }
 }
