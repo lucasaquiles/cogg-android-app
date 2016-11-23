@@ -15,9 +15,9 @@ android {
         applicationId "br.com.lucasaquiles.cogg"
         minSdkVersion 17
         targetSdkVersion 21
-        versionCode 10
+        versionCode 12
     
-        versionName "10.0"
+        versionName "12.0"
     }
     buildTypes {
         release {

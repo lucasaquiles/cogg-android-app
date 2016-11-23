@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
@@ -24,6 +25,7 @@ public class DetailActivity extends Activity {
     private TextView emocao;
     private Pic pic;
     private Sketche currentSketch;
+   private ScrollView scroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,10 @@ public class DetailActivity extends Activity {
 
         titulo = (TextView) findViewById(R.id.titulo);
         emocao = (TextView) findViewById(R.id.emocao);
+
+//        this.scroll = (ScrollView) findViewById(R.id.scrollView);
+//        this.scroll.setFocusableInTouchMode(true);
+//        this.scroll.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
 
         Intent intent = getIntent();
 
