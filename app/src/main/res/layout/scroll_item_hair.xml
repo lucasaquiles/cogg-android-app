@@ -109,6 +109,42 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewHair
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView6"
+                    android:onClick="onClick"
+                    android:src="@drawable/hair_6_ic"
+                    android:tag="hair_6"
+                    />
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewHair
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView7"
+                    android:onClick="onClick"
+                    android:src="@drawable/hair_7_ic"
+                    android:tag="hair_7"
+                    />
+                />
+            </LinearLayout>
+
 
         </LinearLayout>
     </HorizontalScrollView>
