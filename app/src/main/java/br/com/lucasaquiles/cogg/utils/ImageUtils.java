@@ -141,6 +141,8 @@ public class ImageUtils {
     public static Bitmap findDifference(Bitmap firstImage, Bitmap secondImage) {
         Bitmap bmp = secondImage.copy(secondImage.getConfig(), true);
 
+
+
         if (firstImage.getWidth() != secondImage.getWidth()
                 || firstImage.getHeight() != secondImage.getHeight()) {
             return null;
@@ -148,9 +150,33 @@ public class ImageUtils {
 
         for (int i = 0; i < firstImage.getWidth(); i++) {
             for (int j = 0; j < firstImage.getHeight(); j++) {
+
+
+
+                int pixel = firstImage.getPixel(i,j);
+                int redValue = Color.red(pixel);
+                int blueValue = Color.blue(pixel);
+                int greenValue = Color.green(pixel);
+
+                int pixel2 = secondImage.getPixel(i,j);
+                int redValue2 = Color.red(pixel2);
+                int blueValue2 = Color.blue(pixel2);
+                int greenValue2 = Color.green(pixel2);
+
+                if (Math.abs(redValue2 - redValue) + Math.abs(blueValue2 - blueValue) + Math.abs(greenValue2 - greenValue) <= threashold){
+
+
+
+                }else{
+                    bmp.setPixel(i, j, Color.YELLOW);
+                }
+//                if (firstImage.getPixel(i,j) == secondImage.getPixel(i,j))
+
+
+
                 if (firstImage.getPixel(i, j) != secondImage.getPixel(i, j)) {
 
-                    bmp.setPixel(i, j, Color.YELLOW);
+
                 }
             }
         }

@@ -161,6 +161,42 @@
                 />
             </LinearLayout>
 
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair9"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_9_ic"
+                    android:tag="mouth_9"/>
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewMouth
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair10"
+                    android:onClick="onClick"
+                    android:src="@drawable/mouth_10_ic"
+                    android:tag="mouth_10"/>
+                />
+            </LinearLayout>
+
         </LinearLayout>
     </HorizontalScrollView>
 </LinearLayout>

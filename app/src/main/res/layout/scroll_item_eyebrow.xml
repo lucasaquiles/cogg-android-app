@@ -92,6 +92,62 @@
                 />
             </LinearLayout>
 
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewEyebrow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair5"
+                    android:onClick="onClick"
+                    android:src="@drawable/eyebrow_5_ic"
+                    android:tag="eyebrow_5"/>
+                />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewEyebrow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair6"
+                    android:onClick="onClick"
+                    android:src="@drawable/eyebrow_6_ic"
+                    android:tag="eyebrow_6"/>
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_alignParentLeft="true"
+
+                style="@style/scrollItem"
+                android:background="@drawable/bg_scroll_item">
+
+                <br.com.lucasaquiles.cogg.view.ImageViewEyebrow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageViewHair7"
+                    android:onClick="onClick"
+                    android:src="@drawable/eyebrow_7_ic"
+                    android:tag="eyebrow_7"/>
+                />
+            </LinearLayout>
+
         </LinearLayout>
     </HorizontalScrollView>
 </LinearLayout>
