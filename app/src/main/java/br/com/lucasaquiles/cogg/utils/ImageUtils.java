@@ -3,19 +3,22 @@ package br.com.lucasaquiles.cogg.utils;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
  * Created by lucasaquiles on 12/16/15.
  */
 public class ImageUtils {
-    private static final int threashold = 10;
+    private static final int threashold = 0;
     public void onDraw(ImageView image) {
 
         Bitmap workingBitmap =  Bitmap.createBitmap(((BitmapDrawable) image.getDrawable()).getBitmap());
@@ -103,6 +106,10 @@ public class ImageUtils {
             return 0.0;
         }
 
+        firstImage = convertToGrayScale(firstImage);
+        secondImage = convertToGrayScale(secondImage);
+
+
         for (int i = 0; i < firstImage.getWidth(); i++) {
             for (int j = 0; j < firstImage.getHeight(); j++) {
                 if (firstImage.getPixel(i, j) != secondImage.getPixel(i, j)) {
@@ -132,6 +139,55 @@ public class ImageUtils {
         return percentagem;
     }
 
+
+    public static Bitmap convertToGrayScale(Bitmap bmpOriginal){
+
+
+        int width, height;
+        height = bmpOriginal.getHeight();
+        width = bmpOriginal.getWidth();
+
+        Bitmap bmpGrayscale = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+
+        Canvas c = new Canvas(bmpGrayscale);
+        Paint paint = new Paint();
+        ColorMatrix cm = new ColorMatrix();
+        cm.setSaturation(0);
+        ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
+        paint.setColorFilter(f);
+        c.drawBitmap(bmpOriginal, 0, 0, paint);
+
+
+        return bmpGrayscale;
+    }
+
+
+
+    public static Bitmap printMatrix(Bitmap firstImage){
+
+        int[] rgbValues = new int[firstImage.getWidth() * firstImage.getHeight()];  ;
+
+        for(int i=0; i < firstImage.getWidth(); i++)
+        {
+            for(int j=0; j < firstImage.getHeight(); j++)
+            {
+                //This is a great opportunity to filter the ARGB values
+                rgbValues[(j * firstImage.getWidth()) + i] = firstImage.getPixel(i, j);
+                 int values =  rgbValues[(j * firstImage.getWidth()) + i];
+                int rvalue = Color.red(values);
+                Log.i("Pixel Value", "Red pixel: " + rvalue);
+                int gvalue = Color.green(values);
+                Log.i("Pixel Value", "Green pixel: " + gvalue);
+                int bvalue = Color.blue(values);
+                Log.i("Pixel Value", "Blue pixel " + bvalue);
+
+            }
+        }
+
+
+        Bitmap bitmap = Bitmap.createBitmap(rgbValues, firstImage.getWidth(), firstImage.getHeight(), Bitmap.Config.ARGB_8888);
+        return bitmap;
+    }
     /**
      * destaca a diferenca entre duas imagens
      * @param firstImage
@@ -139,8 +195,10 @@ public class ImageUtils {
      * @return
      */
     public static Bitmap findDifference(Bitmap firstImage, Bitmap secondImage) {
-        Bitmap bmp = secondImage.copy(secondImage.getConfig(), true);
+        Bitmap bmp = secondImage.copy(firstImage.getConfig(), true);
 
+        firstImage = convertToGrayScale(firstImage);
+        secondImage = convertToGrayScale(secondImage);
 
 
         if (firstImage.getWidth() != secondImage.getWidth()
@@ -148,10 +206,18 @@ public class ImageUtils {
             return null;
         }
 
+        Canvas canvas = new Canvas(bmp);
+        Paint p = new Paint();
+        p.setStyle(Paint.Style.FILL_AND_STROKE);
+        p.setAntiAlias(true);
+        p.setFilterBitmap(true);
+        p.setDither(true);
+        p.setColor(Color.RED);
+        float bx = (canvas.getWidth() / firstImage.getWidth());
+        float by = (canvas.getHeight() / firstImage.getHeight());
+
         for (int i = 0; i < firstImage.getWidth(); i++) {
             for (int j = 0; j < firstImage.getHeight(); j++) {
-
-
 
                 int pixel = firstImage.getPixel(i,j);
                 int redValue = Color.red(pixel);
@@ -163,19 +229,19 @@ public class ImageUtils {
                 int blueValue2 = Color.blue(pixel2);
                 int greenValue2 = Color.green(pixel2);
 
-                if (Math.abs(redValue2 - redValue) + Math.abs(blueValue2 - blueValue) + Math.abs(greenValue2 - greenValue) <= threashold){
 
+                if (Math.abs(redValue2 - redValue) + Math.abs(blueValue2 - blueValue) + Math.abs(greenValue2 - greenValue) <= threashold){
+                    bmp.setPixel(i, j, Color.TRANSPARENT);
 
 
                 }else{
-                    bmp.setPixel(i, j, Color.YELLOW);
+                    //gc.drawRect((int)(x * bx), (int)(y * by), (int)bx, (int)by);
+
                 }
-//                if (firstImage.getPixel(i,j) == secondImage.getPixel(i,j))
-
-
 
                 if (firstImage.getPixel(i, j) != secondImage.getPixel(i, j)) {
 
+                }else{
 
                 }
             }

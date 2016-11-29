@@ -53,7 +53,8 @@ public class DetailActivity extends Activity {
         Bitmap custom = ImageUtils.getBitmapByPath(currentSketch.getPathToAvatar());
 
 
-        Bitmap real = ImageUtils.findDifference(base, custom);
+
+        Bitmap imagemProcessada = ImageUtils.findDifference(base, custom);
 
 
         titulo.setText(currentSketch.getPic().getTitle());
@@ -63,9 +64,14 @@ public class DetailActivity extends Activity {
 
         String strValorPercentual = String.valueOf(BigDecimal.valueOf(difere).setScale(2, BigDecimal.ROUND_HALF_UP));
 
+
+
         text.setText(strValorPercentual);
 
-        image.setImageBitmap(real);
+      //  Bitmap matriz = ImageUtils.printMatrix(custom);
+
+        Bitmap gray = ImageUtils.convertToGrayScale(custom);
+        image.setImageBitmap(imagemProcessada);
         imageBase.setImageBitmap(ImageUtils.getBitmapByPath(currentSketch.getPic().getFilePath()));
         avatarBase.setImageBitmap(ImageUtils.getBitmapByPath(currentSketch.getPic().getAvatarPath()));
 

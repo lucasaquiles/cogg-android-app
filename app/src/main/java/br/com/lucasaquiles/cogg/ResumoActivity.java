@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -72,7 +73,7 @@ public class ResumoActivity extends Activity implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Toast.makeText(this, "Posicaao: "+position, Toast.LENGTH_LONG).show();
         Sketche stetche = (Sketche) parent.getItemAtPosition(position);
 
         Intent i = new Intent(this, DetailActivity.class);

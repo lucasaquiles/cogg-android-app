@@ -6,8 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
+
+import com.plattysoft.leonids.ParticleSystem;
 
 import br.com.lucasaquiles.cogg.bean.Pic;
 import br.com.lucasaquiles.cogg.bean.Sketche;
@@ -53,6 +57,22 @@ public class FinishActivity extends Activity {
         pic = (Pic) i.getSerializableExtra("pic");
         current = (Sketche) i.getSerializableExtra("current_sketch");
 
+
+        new ParticleSystem(this, 80, R.drawable.star1, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.1f, 0, 0)
+                .setRotationSpeed(144)
+                .setAcceleration(0.000017f, 90)
+                .setFadeOut(200, new AccelerateInterpolator())
+
+                .emitWithGravity(findViewById(R.id.emiter_top_right), Gravity.BOTTOM, 20);
+
+        new ParticleSystem(this, 80, R.drawable.star2, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.1f, 0, 0)
+                .setRotationSpeed(144)
+                .setAcceleration(0.000017f, 90)
+                .setFadeOut(200, new AccelerateInterpolator())
+
+                .emitWithGravity(findViewById(R.id.emiter_top_left), Gravity.BOTTOM, 30);
 
         Drawable draw = Drawable.createFromPath(current.getPathToAvatar());
         if (draw instanceof BitmapDrawable) {
