@@ -14,6 +14,7 @@ import com.j256.ormlite.dao.DaoManager;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Random;
 
 import br.com.lucasaquiles.cogg.bean.Pic;
 import br.com.lucasaquiles.cogg.database.DatabaseHelper;
@@ -86,7 +87,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                     startActivity(new Intent(this, SelectImageActivity.class));
                 }else{
 
-                    int position = (int) Math.random() * list.size();
+                    int position =  new Random().nextInt(list.size());
 
                     Pic pic = list.get(position);
 
