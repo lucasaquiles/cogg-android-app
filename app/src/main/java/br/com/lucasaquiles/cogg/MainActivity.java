@@ -81,18 +81,26 @@ public class MainActivity extends Activity implements View.OnClickListener{
             try {
                 List<Pic> list =  DaoManager.createDao(new DatabaseHelper(this).getConnectionSource(), Pic.class).queryForAll();
 
-                int position = (int) Math.random() * list.size();
+                if(list == null || list.isEmpty()){
 
-                Pic pic = list.get(position);
+                    startActivity(new Intent(this, SelectImageActivity.class));
+                }else{
 
-                Intent intent = new Intent(this, PlayActivity.class);
+                    int position = (int) Math.random() * list.size();
 
-                intent.putExtra("filePath", pic.getAvatarPath());
-                intent.putExtra("title", pic.getTitle());
-                intent.putExtra("pic", pic);
-                intent.putExtra("config", false);
+                    Pic pic = list.get(position);
 
-                startActivity(intent);
+                    Intent intent = new Intent(this, PlayActivity.class);
+
+                    intent.putExtra("filePath", pic.getAvatarPath());
+                    intent.putExtra("title", pic.getTitle());
+                    intent.putExtra("pic", pic);
+                    intent.putExtra("config", false);
+
+                    startActivity(intent);
+                }
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
