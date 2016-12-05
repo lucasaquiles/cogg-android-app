@@ -26,10 +26,10 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+       >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:label="@string/app_name" android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,28 +37,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <activity  android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:name=".PlayActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".TakePictureActivity"
+            android:name=".TakePictureActivity"  android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:label="@string/title_activity_take_picture"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".view.SelectImageActivity"
+            android:name=".view.SelectImageActivity"  android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:label="@string/title_activity_select_image"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".view.ImageConfigActivity"
+            android:name=".view.ImageConfigActivity" android:allowBackup="true"
+            android:theme="@android:style/Theme.Holo.Light"
             android:label="@string/title_activity_image_config" />
         <activity
-            android:name=".FinishActivity"
+            android:name=".FinishActivity"  android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:label="@string/title_activity_finish" />
         <activity
             android:name=".ResumoActivity"
+            android:theme="@android:style/Theme.Holo.Light"
             android:label="@string/title_activity_resumo" />
         <activity
             android:name=".view.DetailActivity"
+            android:theme="@android:style/Theme.Holo.Light"
             android:label="@string/title_activity_detail"></activity>
     </application>
 

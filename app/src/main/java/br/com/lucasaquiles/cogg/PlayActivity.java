@@ -4,8 +4,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -21,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -119,7 +119,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                 title = extras.getString("title");
             }
 
-            Drawable draw = Drawable.createFromPath(filePath);
+            Drawable draw = Drawable.createFromPath(config?pic.getFilePath():filePath);
             if (draw instanceof BitmapDrawable) {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) draw;
                 if (bitmapDrawable.getBitmap() != null) {
@@ -135,7 +135,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
         List<ItemPic> itensPic = pic.loadItensPic(this);
 
-        if(itensPic != null && !itensPic.isEmpty()){
+        if(itensPic != null && !itensPic.isEmpty() && config){
 
             for (ItemPic item: itensPic) {
 
@@ -562,19 +562,47 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                     pic.getItensPic().add(obj3);
 
                     if (dao.update(pic) == 1) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(PlayActivity.this).create();
-                        alertDialog.setTitle("Imagem atualizada");
-                        alertDialog.setMessage("A imagem foi configurada com sucesso");
-                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
+//                        AlertDialog alertDialog = new AlertDialog.Builder(PlayActivity.this).create();
+//                        alertDialog.setTitle("Imagem atualizada");
+//                        alertDialog.setMessage("A imagem foi configurada com sucesso");
+//                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                                new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        dialog.dismiss();
+//
+//                                        Intent i = new Intent(PlayActivity.this, MainActivity.class);
+//                                        startActivity(i);
+//                                    }
+//                                });
+//                        alertDialog.show();
 
-                                        Intent i = new Intent(PlayActivity.this, MainActivity.class);
-                                        startActivity(i);
-                                    }
-                                });
-                        alertDialog.show();
+
+                        final Dialog dialog = new Dialog(this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.alert_dialog_layout);
+
+                        dialog.setTitle("Imagem atualizada");
+
+                        // set the custom dialog components - text, image and button
+                        TextView text = (TextView) dialog.findViewById(R.id.text);
+                        text.setText("A imagem foi configurada com sucesso");
+
+                        ImageView imageBase = (ImageView) dialog.findViewById(R.id.imageBase);
+                        imageBase.setImageBitmap(ImageUtils.getBitmapByPath(pic.getAvatarPath()));
+
+                        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                        // if button is clicked, close the custom dialog
+                        dialogButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+
+                                Intent i = new Intent(PlayActivity.this, MainActivity.class);
+                                startActivity(i);
+                            }
+                        });
+
+                        dialog.show();
                     }
                 } catch (SQLException e) {
 

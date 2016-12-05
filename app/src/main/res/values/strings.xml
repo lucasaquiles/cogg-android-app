@@ -57,9 +57,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_image_config">ImageConfigActivity</string>
+    <string name="title_activity_image_config">Configurar Imagem</string>
     <string name="title_activity_finish">FinishActivity</string>
-    <string name="title_activity_resumo">ResumoActivity</string>
-    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_resumo">Desenhos feitos</string>
+    <string name="title_activity_detail">Detalhes</string>
 
 </resources>
