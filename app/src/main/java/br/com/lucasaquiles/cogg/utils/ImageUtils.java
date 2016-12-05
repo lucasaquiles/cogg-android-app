@@ -15,6 +15,12 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 
+import java.util.List;
+
+import br.com.lucasaquiles.cogg.bean.ItemPic;
+import br.com.lucasaquiles.cogg.bean.Pic;
+import br.com.lucasaquiles.cogg.bean.Sketche;
+
 /**
  * Created by lucasaquiles on 12/16/15.
  */
@@ -96,6 +102,50 @@ public class ImageUtils {
         return null;
     }
 
+
+    public static int calcDiference(Context context, Pic pic, Sketche sk){
+
+        List<ItemPic> itens = pic.loadItensPic(context);
+
+        int acertos = 0;
+
+        for (ItemPic item: itens) {
+
+            if(item.getResourceId() == sk.getEyeResourceId()){
+
+                acertos = acertos+1;
+            }
+
+            if(item.getResourceId() == sk.getEyebrowResourceId()){
+
+                acertos = acertos+1;
+            }
+
+            if(item.getResourceId() == sk.getMouthResourceId()){
+
+                acertos = acertos+1;
+            }
+
+            if(item.getResourceId() == sk.getHairResourceId()){
+
+                acertos = acertos+1;
+            }
+
+            if(item.getResourceId() == sk.getNoiseResourceId()){
+
+                acertos = acertos+1;
+            }
+
+            if(item.getResourceId() == sk.getHeadResourceId()){
+
+                acertos = acertos+1;
+            }
+
+        }
+
+       return acertos;
+     //   return percentualAcerto;
+    }
 
     /**
      * retorna o percentual de diferenca entre as duas imagens

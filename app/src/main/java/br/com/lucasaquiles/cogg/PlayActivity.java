@@ -132,6 +132,53 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
         }
 
+
+        List<ItemPic> itensPic = pic.loadItensPic(this);
+
+        if(itensPic != null && !itensPic.isEmpty()){
+
+            for (ItemPic item: itensPic) {
+
+                Drawable drawable = this.getResources().getDrawable(item.getResourceId());
+                String drawableName = getResources().getResourceEntryName(item.getResourceId());
+
+                if(item.isHead()){
+
+                    imageViewHead.setImageDrawable(drawable);
+                    imageViewHead.setTag(drawableName);
+                }
+
+                if(item.isEye()){
+                    imageViewEye.setImageDrawable(drawable);
+                    imageViewEye.setTag(drawableName);
+                }
+
+                if(item.isEyebrow()){
+
+                    imageViewEyebrow.setImageDrawable(drawable);
+                    imageViewEyebrow.setTag(drawableName);
+                }
+
+                if(item.isHair()){
+
+                    imageViewHair.setImageDrawable(drawable);
+                    imageViewHair.setTag(drawableName);
+                }
+
+                if(item.isNoise()){
+
+                    imageViewNose.setImageDrawable(drawable);
+                    imageViewNose.setTag(drawableName);
+                }
+
+                if(item.isMouth()){
+
+                    imageViewMouth.setImageDrawable(drawable);
+                    imageViewMouth.setTag(drawableName);
+                }
+            }
+        }
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             int progress = 0;
@@ -491,12 +538,28 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                     pic.getItensPic().clear();
 
                     ItemPic item1 = new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this, imageViewEye), pic);
+                    item1.setEye(true);
                     pic.getItensPic().add(item1);
-                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this,  imageViewEyebrow), pic));
-                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this,  imageViewMouth), pic));
-                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this,  imageViewHead), pic));
-                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this,   imageViewHair), pic));
-                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(this, imageViewNose), pic));
+
+                    ItemPic eyeBrow = new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this, imageViewEyebrow), pic);
+                    eyeBrow.setEyebrow(true);
+                    pic.getItensPic().add(eyeBrow);
+
+                    ItemPic obj = new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this, imageViewMouth), pic);
+                    obj.setMouth(true);
+                    pic.getItensPic().add(obj);
+
+                    ItemPic obj1 = new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this, imageViewHead), pic);
+                    obj1.setHead(true);
+                    pic.getItensPic().add(obj1);
+
+                    ItemPic obj2 = new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this, imageViewHair), pic);
+                    obj2.setHair(true);
+                    pic.getItensPic().add(obj2);
+
+                    ItemPic obj3 = new ItemPic(ImageUtils.getResourceFromDrawable(this, imageViewNose), pic);
+                    obj3.setNoise(true);
+                    pic.getItensPic().add(obj3);
 
                     if (dao.update(pic) == 1) {
                         AlertDialog alertDialog = new AlertDialog.Builder(PlayActivity.this).create();

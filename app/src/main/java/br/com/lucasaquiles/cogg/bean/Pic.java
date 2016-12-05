@@ -1,11 +1,20 @@
 package br.com.lucasaquiles.cogg.bean;
 
+import android.content.Context;
+
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.lucasaquiles.cogg.database.DatabaseHelper;
 
 /**
  * Created by lucasaquiles on 2/11/16.
@@ -97,5 +106,43 @@ public class Pic implements Serializable {
 
     public void setItensPic(ForeignCollection<ItemPic> itensPic) {
         this.itensPic = itensPic;
+    }
+
+
+    public List<Sketche> loadSketches(Context context){
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        List<Sketche> sks = new ArrayList<>();
+        try {
+            Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
+            Dao<Sketche, Integer> skDao = DaoManager.createDao(databaseHelper.getConnectionSource(), Sketche.class);
+
+            dao.queryForId(getId().intValue());
+            sks = skDao.queryForEq("pic_id", this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return sks;
+    }
+
+
+    public List<ItemPic> loadItensPic(Context context){
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        List<ItemPic> sks = new ArrayList<>();
+        try {
+            Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
+            Dao<ItemPic, Integer> skDao = DaoManager.createDao(databaseHelper.getConnectionSource(), ItemPic.class);
+
+            dao.queryForId(getId().intValue());
+            sks = skDao.queryForEq("pic_id", this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return sks;
     }
 }

@@ -128,4 +128,6 @@ public class Sketche implements Serializable {
     public void setHairResourceId(int hairResourceId) {
         this.hairResourceId = hairResourceId;
     }
+
+
 }

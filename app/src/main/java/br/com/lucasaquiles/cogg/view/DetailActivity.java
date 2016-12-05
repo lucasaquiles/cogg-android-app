@@ -8,8 +8,6 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.math.BigDecimal;
-
 import br.com.lucasaquiles.cogg.R;
 import br.com.lucasaquiles.cogg.bean.Pic;
 import br.com.lucasaquiles.cogg.bean.Sketche;
@@ -54,19 +52,17 @@ public class DetailActivity extends Activity {
 
 
 
-        Bitmap imagemProcessada = ImageUtils.findDifference(base, custom);
+        Bitmap imagemProcessada = custom; //ImageUtils.findDifference(base, custom);
 
 
         titulo.setText(currentSketch.getPic().getTitle());
         emocao.setText(currentSketch.getPic().getEmotion());
 
-        double difere = ImageUtils.calcDiference(base, custom);
+        int difere = ImageUtils.calcDiference(this,currentSketch.getPic(), currentSketch);
 
-        String strValorPercentual = String.valueOf(BigDecimal.valueOf(difere).setScale(2, BigDecimal.ROUND_HALF_UP));
+        //String strValorPercentual = // String.valueOf(BigDecimal.valueOf(difere).setScale(2, BigDecimal.ROUND_HALF_UP));
 
-
-
-        text.setText(strValorPercentual);
+        text.setText(String.valueOf(difere));
 
       //  Bitmap matriz = ImageUtils.printMatrix(custom);
 
