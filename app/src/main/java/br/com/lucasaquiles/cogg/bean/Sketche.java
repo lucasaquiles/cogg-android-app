@@ -24,6 +24,19 @@ public class Sketche implements Serializable {
     @DatabaseField(canBeNull = true)
     private Date data;
 
+    @DatabaseField(canBeNull = true)
+    private int noiseResourceId;
+    @DatabaseField(canBeNull = true)
+    private int headResourceId;
+    @DatabaseField(canBeNull = true)
+    private int eyeResourceId;
+    @DatabaseField(canBeNull = true)
+    private int eyebrowResourceId;
+    @DatabaseField(canBeNull = true)
+    private int mouthResourceId;
+    @DatabaseField(canBeNull = true)
+    private int hairResourceId;
+
     @DatabaseField(foreign=true, foreignAutoRefresh=true, columnName="pic_id")
     private Pic pic;
 
@@ -65,5 +78,54 @@ public class Sketche implements Serializable {
 
     public void setPic(Pic pic) {
         this.pic = pic;
+    }
+
+
+    public int getNoiseResourceId() {
+        return noiseResourceId;
+    }
+
+    public void setNoiseResourceId(int noiseResourceId) {
+        this.noiseResourceId = noiseResourceId;
+    }
+
+    public int getHeadResourceId() {
+        return headResourceId;
+    }
+
+    public void setHeadResourceId(int headResourceId) {
+        this.headResourceId = headResourceId;
+    }
+
+    public int getEyeResourceId() {
+        return eyeResourceId;
+    }
+
+    public void setEyeResourceId(int eyeResourceId) {
+        this.eyeResourceId = eyeResourceId;
+    }
+
+    public int getEyebrowResourceId() {
+        return eyebrowResourceId;
+    }
+
+    public void setEyebrowResourceId(int eyebrowResourceId) {
+        this.eyebrowResourceId = eyebrowResourceId;
+    }
+
+    public int getMouthResourceId() {
+        return mouthResourceId;
+    }
+
+    public void setMouthResourceId(int mouthResourceId) {
+        this.mouthResourceId = mouthResourceId;
+    }
+
+    public int getHairResourceId() {
+        return hairResourceId;
+    }
+
+    public void setHairResourceId(int hairResourceId) {
+        this.hairResourceId = hairResourceId;
     }
 }

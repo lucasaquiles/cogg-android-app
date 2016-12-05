@@ -526,6 +526,16 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                 sk.setPathToAvatar(filename);
                 sk.setData(data);
 
+                sk.setEyeResourceId(ImageUtils.getResourceFromDrawable(PlayActivity.this, imageViewEye));
+
+                int eyebrow = ImageUtils.getResourceFromDrawable(PlayActivity.this, imageViewEyebrow);
+
+                sk.setEyebrowResourceId(eyebrow);
+                sk.setMouthResourceId(ImageUtils.getResourceFromDrawable(PlayActivity.this,  imageViewMouth));
+                sk.setHeadResourceId(ImageUtils.getResourceFromDrawable(PlayActivity.this,  imageViewHead));
+                sk.setHairResourceId(ImageUtils.getResourceFromDrawable(PlayActivity.this,   imageViewHair));
+                sk.setNoiseResourceId(ImageUtils.getResourceFromDrawable(this, imageViewNose));
+
                 try {
                     Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
 

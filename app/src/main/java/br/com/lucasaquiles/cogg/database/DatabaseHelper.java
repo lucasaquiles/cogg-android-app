@@ -15,7 +15,7 @@ import br.com.lucasaquiles.cogg.bean.Sketche;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	private static final String DB_NAME = "cogg_demo";
-	private static final int DB_VERSION = 4;
+	private static final int DB_VERSION = 5;
 	
 	private static final String TAG_LOG= "dabase_schema";
 	
