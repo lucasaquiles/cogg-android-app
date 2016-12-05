@@ -1,10 +1,14 @@
 package br.com.lucasaquiles.cogg;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -38,11 +42,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import br.com.lucasaquiles.cogg.bean.ItemPic;
 import br.com.lucasaquiles.cogg.bean.Pic;
 import br.com.lucasaquiles.cogg.bean.Sketche;
 import br.com.lucasaquiles.cogg.database.DatabaseHelper;
+import br.com.lucasaquiles.cogg.utils.ImageUtils;
 import br.com.lucasaquiles.cogg.view.ItemFaceView;
 
 
@@ -64,6 +72,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
     private Button saveButton;
     private LinearLayout image;
     private Boolean config;
+    private List<ItemPic> itensPic;
 
     private Pic pic;
 
@@ -394,6 +403,35 @@ public class PlayActivity extends Activity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
+
+    public boolean isValido(int id){
+
+
+       // if(itensPic == null || itensPic.isEmpty()) {
+            DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+            itensPic = new ArrayList<>();
+            try {
+                Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
+                Dao<ItemPic, Integer> skDao = DaoManager.createDao(databaseHelper.getConnectionSource(), ItemPic.class);
+
+                dao.queryForId(pic.getId().intValue());
+                itensPic = skDao.queryForEq("pic_id", this.pic);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+      //  }
+
+        for (ItemPic item : itensPic) {
+            Log.i("compare", "item: "+item.getId() + " == "+id);
+            if(item.getResourceId() == id){
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -409,8 +447,6 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             String path = Environment.DIRECTORY_PICTURES + File.separator + "Cogg" ;
             File sdDir = Environment.getExternalStoragePublicDirectory(path);
             File fileDir = new File(sdDir, "templates");
-
-
 
             if (!fileDir.exists() && !fileDir.mkdirs()) {
                 Toast.makeText(this, "Can't create directory to save image.",
@@ -439,13 +475,24 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                 e.printStackTrace();
             }
             DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+
             if(config) {
 
                 pic.setAvatarPath(filename);
                 try {
 
-
                     Dao<Pic, Integer> dao = DaoManager.createDao(databaseHelper.getConnectionSource(), Pic.class);
+                    Dao<ItemPic, Integer> itensPicDao = DaoManager.createDao(databaseHelper.getConnectionSource(), ItemPic.class);
+
+                    dao.assignEmptyForeignCollection(pic, "itensPic");
+
+                    ItemPic item1 = new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this, imageViewEye), pic);
+                    pic.getItensPic().add(item1);
+                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this,  imageViewEyebrow), pic));
+                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this,  imageViewMouth), pic));
+                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this,  imageViewHead), pic));
+                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this,   imageViewHair), pic));
+                    pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(this, imageViewNose), pic));
 
                     if (dao.update(pic) == 1) {
                         Toast.makeText(this, "atualizou na base " + pic.getAvatarPath(), Toast.LENGTH_LONG).show();
@@ -542,17 +589,65 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                 String openedDrawlable = faceItemView.getTag() + "_ic_opened";
 
                 int id = getResources().getIdentifier(openedDrawlable, "drawable", getPackageName());
-                //  Toast.makeText(this, openedDrawlable + v.getTag(), Toast.LENGTH_LONG ).show();
-                Drawable drawable = getResources().getDrawable(id);
-                // ((ImageView)v).setImageDrawable(drawable);
-                Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.scroll_item_animation);
-
-                imageView.setImageDrawable(drawable);
-                imageView.startAnimation(hyperspaceJumpAnimation);
 
 
-                Animation pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse);
-                v.startAnimation(pulseAnimation);
+                if (!config) {
+                    if (!isValido(id)) {
+
+                        Toast.makeText(this, "Opa, esse não!", Toast.LENGTH_LONG).show();
+
+
+                        final int RED = 0xffFF8080;
+
+                        ValueAnimator colorAnim = ObjectAnimator.ofInt(v.getParent(), "backgroundColor", RED, Color.WHITE);
+                        colorAnim.setDuration(3000);
+                        colorAnim.setEvaluator(new ArgbEvaluator());
+                        colorAnim.setRepeatCount(ValueAnimator.INFINITE);
+                        colorAnim.setRepeatMode(ValueAnimator.REVERSE);
+                        colorAnim.start();
+
+                    } else {
+
+                        final int RED = 0xffFF8080;
+
+                        ValueAnimator colorAnim = ObjectAnimator.ofInt(v.getParent(), "backgroundColor", Color.GREEN, Color.WHITE);
+                        colorAnim.setDuration(3000);
+                        colorAnim.setEvaluator(new ArgbEvaluator());
+                        colorAnim.setRepeatCount(ValueAnimator.INFINITE);
+
+                        colorAnim.start();
+
+                        Toast.makeText(this, "Muito bem!", Toast.LENGTH_SHORT).show();
+
+                        //  Toast.makeText(this, openedDrawlable + v.getTag(), Toast.LENGTH_LONG ).show();
+                        Drawable drawable = getResources().getDrawable(id);
+                        // ((ImageView)v).setImageDrawable(drawable);
+
+
+                        imageView.setImageDrawable(drawable);
+                        imageView.setTag(openedDrawlable);
+
+                    }
+
+                    Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.scroll_item_animation);
+                    imageView.startAnimation(hyperspaceJumpAnimation);
+
+                    Animation pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse);
+                    v.startAnimation(pulseAnimation);
+
+                }else{
+
+                    Drawable drawable = getResources().getDrawable(id);
+
+                    imageView.setImageDrawable(drawable);
+                    imageView.setTag(openedDrawlable);
+
+                    Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.scroll_item_animation);
+                    imageView.startAnimation(hyperspaceJumpAnimation);
+
+                    Animation pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse);
+                    v.startAnimation(pulseAnimation);
+                }
             }
         }
     }

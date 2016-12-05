@@ -18,6 +18,13 @@ public class ItemPic implements Serializable{
     @DatabaseField
     private int resourceId;
 
+    public ItemPic(){}
+
+    public ItemPic(int resourceId, Pic pic){
+        this.resourceId = resourceId;
+        this.pic = pic;
+    }
+
     @DatabaseField(foreign=true, foreignAutoRefresh=true, columnName="pic_id", canBeNull = true)
     private Pic pic;
 

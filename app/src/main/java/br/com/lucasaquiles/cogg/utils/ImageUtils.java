@@ -1,5 +1,6 @@
 package br.com.lucasaquiles.cogg.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -30,6 +31,18 @@ public class ImageUtils {
 
       //  image.setImageBitmap(roundBitmap);
         image.setImageDrawable(new BitmapDrawable(image.getResources(), roundBitmap));
+    }
+
+
+    public static int getResourceFromDrawable(Context context, ImageView imageView){
+
+        String name = context.getResources().getResourceName(imageView.getId());
+
+        String openedDrawlable = imageView.getTag().toString();
+
+        int id = context.getResources().getIdentifier(openedDrawlable, "drawable", context.getPackageName());
+
+        return id;
     }
 
     public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {

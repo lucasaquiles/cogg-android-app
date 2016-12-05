@@ -152,6 +152,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/head_1_ic_opened"
                     android:id="@+id/imageViewHead"
+                    android:tag="head_1_ic_opened"
 
                     android:layout_gravity="center_horizontal|center_vertical"
                      />
@@ -164,7 +165,7 @@
                     android:id="@+id/imageViewEye"
                     android:layout_weight="5"
                     android:layout_marginTop="88dp"
-
+                    android:tag="eye_3_ic_opened"
                     android:layout_gravity="top|center"
                    />
 
@@ -178,6 +179,7 @@
                 android:id="@+id/imageViewEyewbrow"
                 android:layout_weight="5"
                 android:layout_marginTop="70dp"
+                android:tag="eyebrow_1_ic_opened"
 
                 android:layout_gravity="top|center_horizontal"
                 />
@@ -187,6 +189,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/mouth_1_ic_opened"
             android:id="@+id/imageViewMouth"
+            android:tag="mouth_1_ic_opened"
 
             android:layout_weight="5"
             android:layout_marginTop="150dp"
@@ -201,6 +204,7 @@
             android:id="@+id/imageViewNose"
             android:layout_weight="5"
             android:layout_marginTop="120dp"
+android:tag="nose_1_ic_opened"
 
             android:layout_gravity="center_horizontal"
             />
@@ -210,7 +214,7 @@
             android:src="@drawable/hair_4_ic_opened"
             android:id="@+id/imageViewHair"
             android:layout_marginTop="20dp"
-
+android:tag="hair_4_ic_opened"
             android:layout_gravity="center_horizontal" />
 
     </FrameLayout>
