@@ -7,15 +7,16 @@
 
     tools:context="br.com.lucasaquiles.cogg.PlayActivity" android:background="@drawable/bg_app" >
 
-    <AbsoluteLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_marginTop="20dp"
         android:layout_marginRight="20dp">
 
-        <Button
-            android:layout_width="wrap_content" android:gravity="right" android:textColor="#ffe3cc55" android:id="@+id/back_button"
-            android:layout_height="wrap_content" android:text="Voltar" android:background="#ff77c9ff" />
-    </AbsoluteLayout>
+        <ImageButton
+            android:layout_width="wrap_content" android:gravity="left" android:textColor="#ffe3cc55" android:id="@+id/back_button"
+            android:layout_height="wrap_content"  android:src="@drawable/arrow_back" android:background="@null"
+            />
+    </RelativeLayout>
 
     <LinearLayout
         android:orientation="horizontal"

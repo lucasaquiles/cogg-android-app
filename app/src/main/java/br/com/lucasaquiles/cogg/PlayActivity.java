@@ -20,6 +20,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -56,7 +57,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
     private ImageView imageViewMouth;
     private ImageView imageViewNose;
     private ImageView imageViewHair;
-    private Button backButton;
+    private ImageButton backButton;
     private SeekBar seekBar;
     private TextView infoSeekBar;
     private TextView textViewTitleImage;
@@ -341,7 +342,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
             }
         });
 
-        backButton = (Button) findViewById(R.id.back_button);
+        backButton = (ImageButton) findViewById(R.id.back_button);
         backButton.setOnClickListener(this);
 
         saveButton = (Button) findViewById(R.id.save_button);

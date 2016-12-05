@@ -7,16 +7,15 @@
 
     tools:context="br.com.lucasaquiles.cogg.PlayActivity" android:background="@drawable/bg_app">
 
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:id="@+id/absoluteLayout">
 
-        <br.com.lucasaquiles.cogg.view.CustomButtton
+        <ImageButton
             android:layout_width="wrap_content" android:gravity="left" android:textColor="#ffe3cc55" android:id="@+id/back_button"
-            android:layout_height="wrap_content"  android:text="Voltar"
+            android:layout_height="wrap_content"  android:src="@drawable/arrow_back" android:background="@null"
             />
     </RelativeLayout>
 
@@ -70,12 +69,12 @@
 
 
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="15dp">
         <!--<LinearLayout-->
         <!--android:orientation="vertical"-->
         <!--android:layout_width="wrap_content"-->
@@ -215,11 +214,11 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="horizontal"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" android:background="#00ffffff"
         android:id="@+id/linearLayout"  >
@@ -344,7 +343,7 @@
             </LinearLayout>
         </TabHost>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
