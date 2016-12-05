@@ -38,8 +38,10 @@ public class Pic implements Serializable {
     }
 
     @ForeignCollectionField
-
     private ForeignCollection<Sketche> sketches;
+
+    @ForeignCollectionField
+    private ForeignCollection<ItemPic> itensPic;
 
     public String getFilePath() {
         return filePath;
@@ -87,5 +89,13 @@ public class Pic implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ForeignCollection<ItemPic> getItensPic() {
+        return itensPic;
+    }
+
+    public void setItensPic(ForeignCollection<ItemPic> itensPic) {
+        this.itensPic = itensPic;
     }
 }

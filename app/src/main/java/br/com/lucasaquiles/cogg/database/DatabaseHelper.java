@@ -8,6 +8,7 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import br.com.lucasaquiles.cogg.bean.ItemPic;
 import br.com.lucasaquiles.cogg.bean.Pic;
 import br.com.lucasaquiles.cogg.bean.Sketche;
 
@@ -16,7 +17,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private static final String DB_NAME = "cogg_demo";
 	private static final int DB_VERSION = 3;
 	
-	private static final String TAG_LOG= "apresentacao orm";
+	private static final String TAG_LOG= "dabase_schema";
 	
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -29,6 +30,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try{
 			TableUtils.createTable(connectionSource, Pic.class);
 			TableUtils.createTable(connectionSource, Sketche.class);
+			TableUtils.createTable(connectionSource, ItemPic.class);
 			Log.i(TAG_LOG, "criou as tabelas");
 
 		}catch(Exception e){
@@ -40,14 +42,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, ConnectionSource connectionSource, int arg2,
 			int arg3) {
-		// TODO Auto-generated method stub
+
 		
 		try{
-//
+
 			TableUtils.dropTable(connectionSource, Pic.class, true);
 			TableUtils.dropTable(connectionSource, Sketche.class, true);
-	//		TableUtils.dropTable(connectionSource, Pic.class, arg2);
-//			TableUtils.dropTable(connectionSource, Categoria.class, arg2);
+			TableUtils.dropTable(connectionSource, ItemPic.class, true);
+
+			Log.i(TAG_LOG, "atualizou as tabelas");
 		}catch(Exception e){
 			Log.e(TAG_LOG, "exception: "+e);
 		}
