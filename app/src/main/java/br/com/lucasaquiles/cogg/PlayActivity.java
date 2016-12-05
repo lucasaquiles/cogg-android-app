@@ -4,6 +4,8 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -486,6 +488,8 @@ public class PlayActivity extends Activity implements View.OnClickListener {
 
                     dao.assignEmptyForeignCollection(pic, "itensPic");
 
+                    pic.getItensPic().clear();
+
                     ItemPic item1 = new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this, imageViewEye), pic);
                     pic.getItensPic().add(item1);
                     pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(PlayActivity.this,  imageViewEyebrow), pic));
@@ -495,12 +499,24 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                     pic.getItensPic().add(new ItemPic(ImageUtils.getResourceFromDrawable(this, imageViewNose), pic));
 
                     if (dao.update(pic) == 1) {
-                        Toast.makeText(this, "atualizou na base " + pic.getAvatarPath(), Toast.LENGTH_LONG).show();
+                        AlertDialog alertDialog = new AlertDialog.Builder(PlayActivity.this).create();
+                        alertDialog.setTitle("Imagem atualizada");
+                        alertDialog.setMessage("A imagem foi configurada com sucesso");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+
+                                        Intent i = new Intent(PlayActivity.this, MainActivity.class);
+                                        startActivity(i);
+                                    }
+                                });
+                        alertDialog.show();
                     }
                 } catch (SQLException e) {
 
                 }
-                Toast.makeText(this, "vai salvar", Toast.LENGTH_LONG).show();
+
             }else{
 
                 Sketche sk = new Sketche();
@@ -516,7 +532,7 @@ public class PlayActivity extends Activity implements View.OnClickListener {
                     Dao<Sketche, Integer> sketcheDao = DaoManager.createDao(databaseHelper.getConnectionSource(), Sketche.class);
 
                     //if(sketcheDao.create(sk) == 1){
-                        Toast.makeText(this, "criou o sketch " + pic.getAvatarPath(), Toast.LENGTH_LONG).show();
+
                         dao.assignEmptyForeignCollection(pic, "sketches");
 
                         pic.getSketches().add(sk);
