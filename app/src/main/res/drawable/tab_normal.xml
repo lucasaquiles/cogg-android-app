@@ -7,8 +7,8 @@
     </item>
     <item android:top="2dp">
         <shape android:shape="rectangle">
-            <gradient android:startColor="#AAAAAA"
-                android:endColor="#009c2626" android:angle="90" />
+            <gradient android:startColor="#ccc"
+                android:endColor="#ccc" android:angle="90" />
             <corners android:bottomRightRadius="0dp"
                 android:bottomLeftRadius="0dp" android:topLeftRadius="10dp"
                 android:topRightRadius="10dp" />
@@ -17,7 +17,7 @@
     <item android:top="4dp" android:left="1dp" android:right="1dp"
         android:bottom="0dp">
         <shape android:shape="rectangle">
-            <solid android:color="#ffdcdcdc" />
+            <solid android:color="#efefef" />
             <corners android:bottomRightRadius="0dp"
                 android:bottomLeftRadius="0dp" android:topLeftRadius="8dp"
                 android:topRightRadius="8dp" />

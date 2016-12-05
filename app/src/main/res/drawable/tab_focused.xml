@@ -5,10 +5,10 @@
             <!--<solid android:color="#ffffffff" />-->
         <!--</shape>-->
     <!--</item>-->
-    <item android:top="2dp">
+    <item android:top="4dp">
         <shape android:shape="rectangle">
-            <gradient android:startColor="#AAAAAA" android:centerColor="#888888"
-                android:endColor="#ff666666" android:angle="90" />
+            <gradient android:startColor="#ddd" android:centerColor="#eee"
+                android:endColor="#fff" android:angle="90" />
             <corners android:bottomRightRadius="0dp"
                 android:bottomLeftRadius="0dp" android:topLeftRadius="10dp"
                 android:topRightRadius="10dp" />
@@ -17,10 +17,11 @@
     <item android:top="4dp" android:left="1dp" android:right="1dp"
         android:bottom="0dp">
         <shape android:shape="rectangle">
-            <gradient android:startColor="#8F8F8F" android:centerColor="#656565"
+            <gradient android:startColor="#ccc" android:centerColor="#ccc"
                 android:endColor="#ffffffff" android:angle="90" />
             <corners android:bottomRightRadius="0dp"
                 android:bottomLeftRadius="0dp" android:topLeftRadius="8dp"
+
                 android:topRightRadius="8dp" />
         </shape>
     </item>
